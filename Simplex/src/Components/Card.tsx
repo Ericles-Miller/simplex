@@ -11,17 +11,12 @@ export  function CardProblem() {
   return (
     <Card className={styles.card}>
       <CardActionArea>
-        <CardMedia
-          component="img"
-          height="140"
-          image="/static/images/cards/contemplative-reptile.jpg"
-          
-        />
+        
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">
             Gerar Problema
           </Typography>
-          <Typography variant="body2" color="text.secondary">   
+          <Typography variant="body2">   
             Coloque o numero de variaveis de decisao e o numero de restricoes. Alem disso selecione 
           </Typography>
         </CardContent>
