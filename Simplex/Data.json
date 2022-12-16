@@ -1,6 +1,13 @@
-[
-    {
-        "numberVariable":2,
-        "numberConstraints":3
+{
+    "Data": {
+        "numberVariable": 2,
+        "numberConstraints": 3
     }
-]
+}
+
+
+
+
+
+
+
