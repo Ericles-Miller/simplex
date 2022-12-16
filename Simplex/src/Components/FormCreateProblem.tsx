@@ -8,6 +8,11 @@ const options = [
     { label: 'Minimizar', id: 2 },
 ];
 
+const options2 = [
+  { label: 'Deual', id: 1 },
+  { label: 'Tabular', id: 2 },
+];
+
 export function FormCreateProblem () {
     return (
         <div>
@@ -18,6 +23,13 @@ export function FormCreateProblem () {
             options={options}
             sx={{ width: 300 }}
             renderInput={(params) => <TextField {...params} label="Funcao Objetivo" />}
+          />
+          <Autocomplete className={styles.objective}
+            disablePortal
+            id="combo-box-objective"
+            options={options2}
+            sx={{ width: 300 }}
+            renderInput={(params) => <TextField {...params} label="Modulo" />}
           />
           <div className={styles.number}>
           <TextField 
