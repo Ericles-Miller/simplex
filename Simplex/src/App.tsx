@@ -1,7 +1,8 @@
 import { useState } from 'react'
 import './App.css'
 import { Autocomplete, Card, TextField } from '@mui/material'
-import { MultiActionAreaCard } from './Components/Card';
+import { CardProblem } from './Components/Card';
+import './global.css';
 
 
 
@@ -11,7 +12,7 @@ function App() {
 
   return (
     <div className="App">
-      <MultiActionAreaCard />
+      <CardProblem />
         
         
 
