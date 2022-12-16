@@ -1,4 +1,4 @@
-import { TextField } from "@mui/material";
+import { TextField, Button } from "@mui/material";
 import { FormEvent, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import styles from './formCreateProblem.module.css';
@@ -10,43 +10,36 @@ import FormLabel from '@mui/material/FormLabel';
 
 interface IDataProblem {
   numberVariable: number,
-  numberConstraints: number
+  numberConstraints: number,
+  method: string,
+  option: string
 }
-
-// const options = [
-//   { label: 'Maximizar', id: 1 },
-//   { label: 'Minimizar', id: 2 },
-// ];
-
-// const options2 = [
-//   { label: 'Deual', id: 1 },
-//   { label: 'Tabular', id: 2 },
-// ];
-
 
 export function FormCreateProblem() {
   const [dataProblem, SetNewDataProblem] = useState<IDataProblem>({} as any)
 
-  async function postTask() {
-    fetch('http://localhost:3000', {
+  async function postData() {
+    fetch('http://localhost:3000/dataProblem', {
             method: 'POST',
             headers: {
             'Content-Type': 'application/json'
             },
             body: `{
               "numberVariable": ${dataProblem.numberVariable},
-              "numberConstraints": ${dataProblem.numberConstraints}
+              "numberConstraints": ${dataProblem.numberConstraints},
+              "method": ${dataProblem.method},
+              "option": ${dataProblem.option}
             }`
     }).then(data => data.json())
   }
 
   function handleCreateNewData(event: FormEvent) {
     event.preventDefault();
-    postTask();
+    postData();
   }
 
-  async function loadTasks() {
-    const response = await fetch('http://localhost:3000');
+  async function loadData() {
+    const response = await fetch('http://localhost:3000/dataProblem');
     const data = await response.json();
 
     SetNewDataProblem(data);
@@ -57,85 +50,74 @@ export function FormCreateProblem() {
   }
 
   useEffect(() => {
-    loadTasks();
+    loadData();
   }, [])
-
-  console.log(dataProblem)
-
 
   return (
     <div>
       <form onSubmit={handleCreateNewData} className={styles.form} action="">
         <div className={styles.number}>
-        <FormLabel id="demo-row-radio-buttons-group-label">Método</FormLabel>
-      <RadioGroup
-        row
-        aria-labelledby="demo-row-radio-buttons-group-label"
-        name="row-radio-buttons-group"
-      >
-        <FormControlLabel value="Maximizar" control={<Radio />} label="Maximizar" />
-        <FormControlLabel value="Minimizar" control={<Radio />} label="Minimizar" />
-      </RadioGroup>
+          <div className={styles.inputRadio}>
+            <div>
+              <FormLabel id="demo-row-radio-buttons-group-label">Método</FormLabel>
+              <RadioGroup
+                row
+                aria-labelledby="demo-row-radio-buttons-group-label"
+                name="method"
+                value={dataProblem?.method}
+                onChange={handleNewDataChange}
+              >
+                <FormControlLabel value="Maximizar" control={<Radio />} label="Maximizar" />
+                <FormControlLabel value="Minimizar" control={<Radio />} label="Minimizar" />
+              </RadioGroup>
+            </div>
 
-      <FormLabel id="demo-row-radio-buttons-group-label">Objetivo</FormLabel>
-      <RadioGroup
-        row
-        aria-labelledby="demo-row-radio-buttons-group-label"
-        name="row-radio-buttons-group"
-      >
-        <FormControlLabel value="Tabular" control={<Radio />} label="Tabular" />
-        <FormControlLabel value="Dual" control={<Radio />} label="Dual" />
-        
-      </RadioGroup>
-
-
-
-
-
-          <TextField
-            name="numberVariable"
-            value={dataProblem?.numberVariable}
-            onChange={handleNewDataChange}
-            id="numberVariable"
-            label="Numero de Variaveis de Decisao"
-            type='number'
-            color="success"
-            focused
-          />
-          <TextField
-            name="numberConstraints"
-            value={dataProblem?.numberConstraints}
-            onChange={handleNewDataChange}
-            id="numberConstraints"
-            label="Numero de Variaveis de Restricao"
-            type='number'
-            color="success"
-            focused
-          />
+            <div>
+              <FormLabel id="demo-row-radio-buttons-group-label">Objetivo</FormLabel>
+              <RadioGroup
+                row
+                aria-labelledby="demo-row-radio-buttons-group-label"
+                name="option"
+                color="success"
+                value={dataProblem?.option}
+                onChange={handleNewDataChange}
+              >
+                <FormControlLabel value="Tabular" control={<Radio />} label="Tabular" />
+                <FormControlLabel value="Dual" control={<Radio />} label="Dual" />
+              </RadioGroup>
+            </div>
+          </div>
+          <div className={styles.inputText}>
+            <TextField
+              name="numberVariable"
+              value={dataProblem?.numberVariable}
+              onChange={handleNewDataChange}
+              id="numberVariable"
+              label="Numero de Variaveis de Decisao"
+              type='number'
+              color="success"
+              focused
+            />
+            <TextField
+              name="numberConstraints"
+              value={dataProblem?.numberConstraints}
+              onChange={handleNewDataChange}
+              id="numberConstraints"
+              label="Numero de Variaveis de Restricao"
+              type='number'
+              color="success"
+              focused
+            />
+          </div>
         </div>
         <footer>
-          <button type="submit">
-            <Link to='/GenerateProblem'>Continuar</Link>
-          </button>
+          <Link to='/GenerateProblem'>
+            <Button type="submit" variant="contained" color="success">
+              Continuar
+            </Button>
+          </Link>
         </footer>
       </form>
     </div>
   );
 }
-
-/*
-<Autocomplete className={styles.objective}
-          disablePortal
-          options={options}
-          sx={{ width: 300 }}
-          renderInput={(params) => <TextField {...params} label="Funcao Objetivo" color="success" focused id="objective" name="method" value={dataProblem?.method} onChange={handleNewDataChange} />}
-        />
-
-        <Autocomplete className={styles.objective}
-          disablePortal
-          options={options2}
-          sx={{ width: 300 }}
-          renderInput={(params) => <TextField {...params} label="Funcao Objetivo" color="success" focused id="objective2" name="option" value={dataProblem?.option} onChange={handleNewDataChange} />}
-        />
-
-        */
