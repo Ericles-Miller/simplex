@@ -1,4 +1,5 @@
 import { Autocomplete, TextField } from "@mui/material";
+import { Link } from "react-router-dom";
 import styles from './formCreateProblem.module.css';
 
 
@@ -32,7 +33,7 @@ export function FormCreateProblem () {
           </div>
           <footer>
             <button>
-                <link to='/GenerateProblem' >Continuar</link>
+                <Link to='/GenerateProblem' >Continuar</Link>
             </button>
           </footer>
         </form>
