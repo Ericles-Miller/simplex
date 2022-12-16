@@ -13,16 +13,6 @@ interface IDataProblem {
   numberConstraints: number
 }
 
-// const options = [
-//   { label: 'Maximizar', id: 1 },
-//   { label: 'Minimizar', id: 2 },
-// ];
-
-// const options2 = [
-//   { label: 'Deual', id: 1 },
-//   { label: 'Tabular', id: 2 },
-// ];
-
 
 export function FormCreateProblem() {
   const [dataProblem, SetNewDataProblem] = useState<IDataProblem>({} as any)
