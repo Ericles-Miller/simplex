@@ -1,7 +1,6 @@
 .card {
-    background: var(--gray-800);
+    background: var(--gray-800) !important;
+    color: var(--white) !important;
     border-radius: 8px;
-    overflow: hidden; /*faz com que os elementos dentro da div ficam com borda arredondada*/
-    width: 100%;
-    
+    padding: 2.5rem;
 }
