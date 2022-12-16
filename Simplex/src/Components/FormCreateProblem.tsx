@@ -32,7 +32,7 @@ export function FormCreateProblem () {
           </div>
           <footer>
             <button>
-                <a href="#">Continuar</a>
+                <link to='/GenerateProblem' >Continuar</link>
             </button>
           </footer>
         </form>
