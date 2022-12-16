@@ -4,7 +4,7 @@ import { Autocomplete, TextField } from "@mui/material";
 const options = [
     { label: '<=', id: 1 },
     { label: '=',  id: 2 },
-    { label: '=>',  id: 3 },
+    { label: '=>',  id: 3},
 ];
 
 export function GenerateProblem() {

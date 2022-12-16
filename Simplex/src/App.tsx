@@ -1,23 +1,25 @@
+import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import { useState } from 'react'
-import './App.css'
-import { Autocomplete, Card, TextField } from '@mui/material'
 import { CardProblem } from './Components/Card';
+import { GenerateProblem } from './Components/GenerateProblem';
 import './global.css';
-
-
+import { PivotArray } from './Components/PivotArray';
 
 
 function App() {
   const [count, setCount] = useState(0)
 
   return (
-    <div className="App">
-      <CardProblem />
-        
-        
+    <Router>
+      <Routes>
+        <Route path='/' element={<CardProblem />}/>
+        <Route path='/GenerateProblem' element={<GenerateProblem />}/>
+        <Route path='/PivotArray' element={<PivotArray />}/>
+      </Routes>
+    </Router>
 
-    </div>
-  )
+  );
+
 }
 
 export default App
