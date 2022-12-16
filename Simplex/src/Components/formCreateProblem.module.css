@@ -1,0 +1,10 @@
+.objective{
+    padding: 2rem;
+}
+
+.number {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin: 1rem;
+}
