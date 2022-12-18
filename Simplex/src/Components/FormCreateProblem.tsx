@@ -1,12 +1,17 @@
 import { TextField, Button } from "@mui/material";
 import { FormEvent, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styles from './formCreateProblem.module.css';
 
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormLabel from '@mui/material/FormLabel';
+
+import { useContentxProblem } from "../context/ProblemContentex";
+// import {useHistory} from 'react-router-dom';
+
+
 
 interface IDataProblem {
   numberVariable: number,
@@ -17,6 +22,9 @@ interface IDataProblem {
 
 export function FormCreateProblem() {
   const [dataProblem, SetNewDataProblem] = useState<IDataProblem>({} as any)
+
+  const object = useContentxProblem()
+  const history = useNavigate()
 
   async function postData() {
     fetch('http://localhost:3000/dataProblem', {
@@ -35,7 +43,8 @@ export function FormCreateProblem() {
 
   function handleCreateNewData(event: FormEvent) {
     event.preventDefault();
-    postData();
+    object.setData(dataProblem)
+    history('/GenerateProblem')
   }
 
   async function loadData() {
@@ -49,10 +58,10 @@ export function FormCreateProblem() {
     SetNewDataProblem({ ...dataProblem, [event.target.name]: event.target.value})
   }
 
-  useEffect(() => {
-    loadData();
-  }, [])
-  console.log(dataProblem)
+  // useEffect(() => {
+  //   loadData();
+  // }, [])
+  // console.log(dataProblem)
 
   return (
     <div>
@@ -112,11 +121,10 @@ export function FormCreateProblem() {
           </div>
         </div>
         <footer>
-          <Link to='/GenerateProblem'>
+          
             <Button type="submit" variant="contained" color="success">
               Continuar
             </Button>
-          </Link>
         </footer>
       </form>
     </div>
