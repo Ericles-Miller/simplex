@@ -52,6 +52,7 @@ export function FormCreateProblem() {
   useEffect(() => {
     loadData();
   }, [])
+  console.log(dataProblem)
 
   return (
     <div>
