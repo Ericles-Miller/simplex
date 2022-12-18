@@ -11,9 +11,27 @@
 
 .number {
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
     width: 100%;
     margin: 1rem;
-    color: var(--white);
+    color: var(--white) !important;
+}
 
+.inputText {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+label {
+    color: var(--white) !important;
+}
+
+.inputRadio {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
 }
