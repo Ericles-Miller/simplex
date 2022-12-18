@@ -1,3 +1,10 @@
 {
-    "dataProblem": []
+    "dataProblem": [
+        {
+            "numberVariable": 3,
+            "numberConstraints": 3,
+            "method": "maximizar",
+            "option": "tabular"
+        }
+    ]
 }
