@@ -121,8 +121,8 @@ export function GenerateProblem() {
                 <select name="" id=""
                   onChange={(event)=>HandleChangesVariable(row,'simbol', event.target.value)}
                 >
-                  <option value='<=' selected>{'<='}</option>
-                  <option value='='>{'='}</option>
+                  <option value='<='>{'<='}</option>
+                  <option value='=' >{'=' }</option>
                   <option value='=>'>{'=>'}</option>
                 </select>
                 <TextField
