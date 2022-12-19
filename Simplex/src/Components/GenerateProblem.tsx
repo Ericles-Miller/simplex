@@ -3,8 +3,6 @@ import { Card2 } from "./Card2";
 import { useContentxProblem } from "../context/ProblemContentex";
 import { TextField } from "@mui/material";
 
-
-
 interface IDataProblem {
   numberVariable: number,
   numberConstraints: number,
@@ -12,22 +10,19 @@ interface IDataProblem {
   option: string
 }
 
-
-
-
 export function GenerateProblem() {
   const object = useContentxProblem()
-  console.log(object.data)
+  console.log(object.data, 'aaaaa')
 
   const [result, setResult ] = useState({
     constraintsMethod: {
 
     },
-
     numberVariablesMethod: Array.from({
       length:object.data.numberVariable
-
-    }).map(()=>{})
+    }).map(()=>{}),
+    method: object.data.method,
+    option: object.data.option
   })
 
   function HandleChangesVariable(row, item, value,) {
@@ -46,6 +41,18 @@ export function GenerateProblem() {
       }
     })
   }
+  
+  function HandleChangesConstraints(item,value){
+    setResult((previousState)=>{
+      return {
+        ...previousState,
+        constraintsMethod:{
+          ...previousState.constraintsMethod, 
+          [item]:value
+        }
+      }
+    })
+  }
 
   function handleSubmit(){
     const link = document.createElement('a')
@@ -60,17 +67,7 @@ export function GenerateProblem() {
     link.click()
   }
 
-  function HandleChangesConstraints(item,value){
-    setResult((previousState)=>{
-      return {
-        ...previousState,
-        constraintsMethod:{
-          ...previousState.constraintsMethod, 
-          [item]:value
-        }
-      }
-    })
-  }
+
   console.log(result)
   return (
     <div>
