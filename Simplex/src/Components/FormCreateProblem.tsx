@@ -1,6 +1,6 @@
 import { TextField, Button } from "@mui/material";
 import { FormEvent, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styles from './formCreateProblem.module.css';
 
 import Radio from '@mui/material/Radio';
@@ -8,15 +8,27 @@ import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormLabel from '@mui/material/FormLabel';
 
+import { useContextProblem } from "../context/ProblemContentex";
+// import {useHistory} from 'react-router-dom';
+
+
+
 interface IDataProblem {
   numberVariable: number,
   numberConstraints: number,
   method: string,
-  option: string
+  option: string,
+  type: string,
 }
 
 export function FormCreateProblem() {
   const [dataProblem, SetNewDataProblem] = useState<IDataProblem>({} as any)
+
+  const object = useContextProblem()
+  const navigate = useNavigate()
+
+  const object = useContextProblem()
+  const navigate = useNavigate()
 
   const postData = () => {
     fetch('http://localhost:3003/dataProblem', {
@@ -40,7 +52,8 @@ export function FormCreateProblem() {
 
   function handleCreateNewData(event: FormEvent) {
     event.preventDefault();
-    postData();
+    object.setData(dataProblem)
+    navigate('/GenerateProblem')
   }
 
   async function loadData() {
@@ -52,19 +65,55 @@ export function FormCreateProblem() {
   const handleNewDataChange = (event: any) => {
     SetNewDataProblem({ ...dataProblem, [event.target.name]: event.target.value })
   }
-
-  useEffect(() => {
-    loadData();
-    postData();
-  }, [])
   console.log(dataProblem)
-
-  console.log(dataProblem)
-
   return (
     <div>
       <form onSubmit={handleCreateNewData} className={styles.form} action="">
         <div className={styles.number}>
+          <div className={styles.inputRadio}>
+            <div>
+              <FormLabel id="demo-row-radio-buttons-group-label">Método</FormLabel>
+              <RadioGroup
+                row
+                aria-labelledby="demo-row-radio-buttons-group-label"
+                name="method"
+                value={dataProblem?.method}
+                onChange={handleNewDataChange}
+              >
+                <FormControlLabel value="Maximizar" control={<Radio />} label="Maximizar" />
+                <FormControlLabel value="Minimizar" control={<Radio />} label="Minimizar" />
+              </RadioGroup>
+            </div>
+
+            <div>
+              <FormLabel id="demo-row-radio-buttons-group-label">Objetivo</FormLabel>
+              <RadioGroup
+                row
+                aria-labelledby="demo-row-radio-buttons-group-label"
+                name="option"
+                color="success"
+                value={dataProblem?.option}
+                onChange={handleNewDataChange}
+              >
+                <FormControlLabel value="Primal" control={<Radio />} label="Primal" />
+                <FormControlLabel value="Dual"   control={<Radio />} label="Dual" />
+              </RadioGroup>
+            </div>
+            <div>
+              <FormLabel id="demo-row-radio-buttons-group-label">Objetivo2</FormLabel>
+              <RadioGroup
+                row
+                aria-labelledby="demo-row-radio-buttons-group-label"
+                name="type"
+                color="success"
+                value={dataProblem?.type}
+                onChange={handleNewDataChange}
+              >
+                <FormControlLabel value="Tabular" control={<Radio />} label="Tabular" />
+                <FormControlLabel value="Graphic" control={<Radio />} label="Graphic" />
+              </RadioGroup>
+            </div>
+          </div>
           <div className={styles.inputText}>
             <TextField
               name="numberVariable"
@@ -79,18 +128,19 @@ export function FormCreateProblem() {
               name="numberConstraints"
               value={dataProblem.numberConstraints}
               onChange={handleNewDataChange}
-              label="Numero de Variaveis de Restricao"
+              id="numberConstraints"
+              label="Numero Restricao"
+              type='number'
               color="success"
               focused
             />
           </div>
         </div>
         <footer>
-          <Link to='/GenerateProblem'>
+          
             <Button type="submit" variant="contained" color="success">
               Continuar
             </Button>
-          </Link>
         </footer>
       </form>
     </div>
