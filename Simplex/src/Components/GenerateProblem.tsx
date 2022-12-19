@@ -2,19 +2,18 @@ import { FormEvent, useState } from "react";
 import { Card2 } from "./Card2";
 import { useContextProblem } from "../context/ProblemContentex";
 import { TextField } from "@mui/material";
-import styles from './GenerateProblem.module.css'
 
 interface IDataProblem {
   numberVariable: number,
   numberConstraints: number,
   method: string,
   option: string,
-  type  : string,
+  type: string
 }
 
 export function GenerateProblem() {
   const object = useContextProblem()
-  console.log(object.data)
+  console.log(object.data, 'aaaaa')
 
   const [result, setResult ] = useState({
     constraintsMethod: {
@@ -25,10 +24,10 @@ export function GenerateProblem() {
     }).map(()=>{}),
     method: object.data.method,
     option: object.data.option,
-    type  : object.data.type
+    type: object.data.type
   })
 
-  function HandleChangesVariable(row:any, item:any, value:any) {
+  function HandleChangesVariable(row, item, value,) {
     setResult((previousState)=>{
       return {
         ...previousState,
@@ -45,7 +44,7 @@ export function GenerateProblem() {
     })
   }
   
-  function HandleChangesConstraints(item: any,value:any){
+  function HandleChangesConstraints(item,value){
     setResult((previousState)=>{
       return {
         ...previousState,
@@ -122,7 +121,7 @@ export function GenerateProblem() {
                   onChange={(event)=>HandleChangesVariable(row,'simbol', event.target.value)}
                 >
                   <option value='<='>{'<='}</option>
-                  <option value='=' >{'=' }</option>
+                  <option value='='>{'='}</option>
                   <option value='=>'>{'=>'}</option>
                 </select>
                 <TextField
@@ -138,7 +137,7 @@ export function GenerateProblem() {
           })}
         </div>
         <div>
-          <button className={styles.button}onClick={handleSubmit}>Enviar Dados</button>
+          <button onClick={handleSubmit}>Enviar Dados</button>
         </div>
       </Card2>
     </div>
