@@ -58,11 +58,6 @@ export function FormCreateProblem() {
     SetNewDataProblem({ ...dataProblem, [event.target.name]: event.target.value})
   }
 
-  // useEffect(() => {
-  //   loadData();
-  // }, [])
-  // console.log(dataProblem)
-
   return (
     <div>
       <form onSubmit={handleCreateNewData} className={styles.form} action="">
