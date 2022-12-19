@@ -57,6 +57,7 @@ export function FormCreateProblem() {
     loadData();
     postData();
   }, [])
+  console.log(dataProblem)
 
   console.log(dataProblem)
 
