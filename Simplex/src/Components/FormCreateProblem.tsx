@@ -2,16 +2,11 @@ import { TextField, Button } from "@mui/material";
 import { FormEvent, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import styles from './formCreateProblem.module.css';
-
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormLabel from '@mui/material/FormLabel';
-
 import { useContextProblem } from "../context/ProblemContentex";
-// import {useHistory} from 'react-router-dom';
-
-
 
 interface IDataProblem {
   numberVariable: number,
@@ -27,19 +22,24 @@ export function FormCreateProblem() {
   const object = useContextProblem()
   const navigate = useNavigate()
 
-  async function postData() {
-    fetch('http://localhost:3000/dataProblem', {
-            method: 'POST',
-            headers: {
-            'Content-Type': 'application/json'
-            },
-            body: `{
-              "numberVariable": ${dataProblem.numberVariable},
-              "numberConstraints": ${dataProblem.numberConstraints},
-              "method": ${dataProblem.method},
-              "option": ${dataProblem.option}
-            }`
-    }).then(data => data.json())
+  const postData = () => {
+    fetch('http://localhost:3003/dataProblem', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: `{
+        "numberVariable": ${ dataProblem.numberVariable },
+        "numberConstraints": ${ dataProblem.numberConstraints }
+        
+      }`
+    })
+      .then((resp) => resp.json())
+      .then((data) => {
+        SetNewDataProblem(data.numberConstraints);
+        console.log("ESSE É O DADO", dataProblem);
+      })
+
   }
 
   function handleCreateNewData(event: FormEvent) {
