@@ -1,18 +1,20 @@
 import { FormEvent, useState } from "react";
 import { Card2 } from "./Card2";
-import { useContentxProblem } from "../context/ProblemContentex";
+import { useContextProblem } from "../context/ProblemContentex";
 import { TextField } from "@mui/material";
+import styles from './GenerateProblem.module.css'
 
 interface IDataProblem {
   numberVariable: number,
   numberConstraints: number,
   method: string,
-  option: string
+  option: string,
+  type  : string,
 }
 
 export function GenerateProblem() {
-  const object = useContentxProblem()
-  console.log(object.data, 'aaaaa')
+  const object = useContextProblem()
+  console.log(object.data)
 
   const [result, setResult ] = useState({
     constraintsMethod: {
@@ -22,10 +24,11 @@ export function GenerateProblem() {
       length:object.data.numberVariable
     }).map(()=>{}),
     method: object.data.method,
-    option: object.data.option
+    option: object.data.option,
+    type  : object.data.type
   })
 
-  function HandleChangesVariable(row, item, value,) {
+  function HandleChangesVariable(row:any, item:any, value:any) {
     setResult((previousState)=>{
       return {
         ...previousState,
@@ -42,7 +45,7 @@ export function GenerateProblem() {
     })
   }
   
-  function HandleChangesConstraints(item,value){
+  function HandleChangesConstraints(item: any,value:any){
     setResult((previousState)=>{
       return {
         ...previousState,
@@ -118,7 +121,7 @@ export function GenerateProblem() {
                 <select name="" id=""
                   onChange={(event)=>HandleChangesVariable(row,'simbol', event.target.value)}
                 >
-                  <option value='<='>{'<='}</option>
+                  <option value='<=' selected>{'<='}</option>
                   <option value='='>{'='}</option>
                   <option value='=>'>{'=>'}</option>
                 </select>
@@ -135,7 +138,7 @@ export function GenerateProblem() {
           })}
         </div>
         <div>
-          <button onClick={handleSubmit}>Enviar Dados</button>
+          <button className={styles.button}onClick={handleSubmit}>Enviar Dados</button>
         </div>
       </Card2>
     </div>

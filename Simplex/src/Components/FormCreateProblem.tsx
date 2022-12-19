@@ -8,7 +8,7 @@ import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormLabel from '@mui/material/FormLabel';
 
-import { useContentxProblem } from "../context/ProblemContentex";
+import { useContextProblem } from "../context/ProblemContentex";
 // import {useHistory} from 'react-router-dom';
 
 
@@ -17,14 +17,15 @@ interface IDataProblem {
   numberVariable: number,
   numberConstraints: number,
   method: string,
-  option: string
+  option: string,
+  type: string,
 }
 
 export function FormCreateProblem() {
   const [dataProblem, SetNewDataProblem] = useState<IDataProblem>({} as any)
 
-  const object = useContentxProblem()
-  const history = useNavigate()
+  const object = useContextProblem()
+  const navigate = useNavigate()
 
   async function postData() {
     fetch('http://localhost:3000/dataProblem', {
@@ -44,7 +45,7 @@ export function FormCreateProblem() {
   function handleCreateNewData(event: FormEvent) {
     event.preventDefault();
     object.setData(dataProblem)
-    history('/GenerateProblem')
+    navigate('/GenerateProblem')
   }
 
   async function loadData() {
@@ -57,7 +58,7 @@ export function FormCreateProblem() {
   const handleNewDataChange = (event: any) => {
     SetNewDataProblem({ ...dataProblem, [event.target.name]: event.target.value})
   }
-
+  console.log(dataProblem)
   return (
     <div>
       <form onSubmit={handleCreateNewData} className={styles.form} action="">
@@ -87,8 +88,22 @@ export function FormCreateProblem() {
                 value={dataProblem?.option}
                 onChange={handleNewDataChange}
               >
+                <FormControlLabel value="Primal" control={<Radio />} label="Primal" />
+                <FormControlLabel value="Dual"   control={<Radio />} label="Dual" />
+              </RadioGroup>
+            </div>
+            <div>
+              <FormLabel id="demo-row-radio-buttons-group-label">Objetivo2</FormLabel>
+              <RadioGroup
+                row
+                aria-labelledby="demo-row-radio-buttons-group-label"
+                name="type"
+                color="success"
+                value={dataProblem?.type}
+                onChange={handleNewDataChange}
+              >
                 <FormControlLabel value="Tabular" control={<Radio />} label="Tabular" />
-                <FormControlLabel value="Dual" control={<Radio />} label="Dual" />
+                <FormControlLabel value="Graphic" control={<Radio />} label="Graphic" />
               </RadioGroup>
             </div>
           </div>
@@ -108,7 +123,7 @@ export function FormCreateProblem() {
               value={dataProblem?.numberConstraints}
               onChange={handleNewDataChange}
               id="numberConstraints"
-              label="Numero de Variaveis de Restricao"
+              label="Numero Restricao"
               type='number'
               color="success"
               focused

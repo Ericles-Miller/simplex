@@ -9,7 +9,7 @@ interface IContext{
 
 const Context = createContext<IContext>({} as IContext)
 
-export function ContextProblem({children}) {
+export function ContextProblem({children}:any) {
     
     const [data, setData] = useState(null);
     
@@ -23,7 +23,7 @@ export function ContextProblem({children}) {
     )
 }
 
-export function useContentxProblem(){
+export function useContextProblem(){
     const value = useContext(Context)
     return value
 }
