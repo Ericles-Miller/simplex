@@ -10,6 +10,7 @@
 
     --green-300: #00b75e;
     --green-500: #00875f;
+    --green-600: #2E7D32;
 
     --red-500: #f75a68;
 }
@@ -37,4 +38,9 @@ body, input, button {
     font-family: 'Roboto', sans-serif;
     font-weight: 400;
     font-size: 1rem; /*1 unidade relativa padrao do html = 16 px */ 
+    color: var(--white) !important;
+}
+
+input:focus {
+    color: var(--white);
 }

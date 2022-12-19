@@ -1,7 +1,7 @@
 import { FormEvent, useState } from "react";
 import { Card2 } from "./Card2";
 import { useContextProblem } from "../context/ProblemContentex";
-import { TextField } from "@mui/material";
+import { Button, TextField } from "@mui/material";
 
 interface IDataProblem {
   numberVariable: number,
@@ -73,14 +73,18 @@ export function GenerateProblem() {
   console.log(result)
   return (
     <div>
+      <form >
       <Card2 >
-        <div style={{ display: 'flex' }}>
+        
+        <div style={{ display: 'flex', marginBottom: '1.5rem', justifyContent: 'center', alignItems: "center"}}>
+        <strong style={{paddingRight: "1rem"}}>Função</strong>
           {Array.from({
             length: object.data.numberConstraints
           }).map((item, index) => {
             
-            return <div>
+            return <div style={{display: 'flex', alignItems: 'center'}}>
               <TextField
+                style={{ marginLeft: '0.5rem' }}
                 name="InputRestrictions"
                 id="InputRestrictions"
                 label={`x${index + 1}`}
@@ -88,24 +92,26 @@ export function GenerateProblem() {
                 color="success"
                 focused
                 onChange={(event)=>HandleChangesConstraints(`x${index + 1}`,event.target.value )}
+                required
               />
-              {index != object.data.numberConstraints - 1 ? <label >+</label> : null}
+              {index != object.data.numberConstraints - 1 ? <strong style={{ marginLeft: '0.5rem' }}>+</strong> : null}
             </div>
           })}
         </div>
 
 
-        <div >
+        <div>
           {Array.from({
             length: object.data.numberVariable,
 
           }).map((_,row) => {
             return (
-              <div style={{ display: 'flex' }}>
+              <div style={{ display: 'flex', marginBottom: '1.5rem' }}>
                 {Array.from({
                   length: object.data.numberConstraints,
                 }).map((item, column) => {
-                  return <div><TextField
+                  return <div style={{display: 'flex', alignItems: 'center'}}>
+                    <TextField
                     name="InputRestrictions"
                     id="InputRestrictions"
                     label={`x${column + 1}`}
@@ -113,12 +119,14 @@ export function GenerateProblem() {
                     color="success"
                     focused
                     onChange={(event)=>HandleChangesVariable(row,`x${column + 1}`, event.target.value)}
+                    required
                   />
-                    {column != object.data.numberConstraints - 1 ? <label >+</label> : null}
+                    {column != object.data.numberConstraints - 1 ? <strong style={{ marginLeft: '0.5rem', marginRight: '0.5rem' }}>+</strong> : null}
                   </div>
                 })}
                 <select name="" id=""
                   onChange={(event)=>HandleChangesVariable(row,'simbol', event.target.value)}
+                  style={{ marginLeft: '0.5rem', marginRight: '0.5rem' }}
                 >
                   <option value='<='>{'<='}</option>
                   <option value='='>{'='}</option>
@@ -131,15 +139,19 @@ export function GenerateProblem() {
                   color="success"
                   focused
                   onChange={(event)=>HandleChangesVariable(row,'result', event.target.value)}
+                  required
                 />
               </div>
             )
           })}
         </div>
-        <div>
-          <button onClick={handleSubmit}>Enviar Dados</button>
+        <div style={{marginTop: '2rem'}}>
+          <Button onClick={handleSubmit} type="submit"  variant="contained" color="success">
+            Enviar Dados
+          </Button>
         </div>
       </Card2>
+      </form>
     </div>
   )
 }

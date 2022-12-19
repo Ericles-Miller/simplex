@@ -1,9 +1,8 @@
 import { Card, CardActionArea, CardActions, CardContent, Typography } from "@mui/material";
 import styles from './Card.module.css';
-import { Constraints } from "./Constraints";
-import { GenerateProblem } from "./GenerateProblem";
 
-export function Card2({ children }) {
+
+export function Card2({ children }:any) {
   return (
     <Card className={styles.card}>
       <CardActionArea>
