@@ -18,14 +18,14 @@ interface IDataProblem {
   numberConstraints: number,
   method: string,
   option: string,
-  type: string,
+  type: string
 }
 
 export function FormCreateProblem() {
   const [dataProblem, SetNewDataProblem] = useState<IDataProblem>({} as any)
 
   const object = useContextProblem()
-  const navigate = useNavigate()
+  const history = useNavigate()
 
   const object = useContextProblem()
   const navigate = useNavigate()
@@ -53,7 +53,7 @@ export function FormCreateProblem() {
   function handleCreateNewData(event: FormEvent) {
     event.preventDefault();
     object.setData(dataProblem)
-    navigate('/GenerateProblem')
+    history('/GenerateProblem')
   }
 
   async function loadData() {
@@ -65,7 +65,7 @@ export function FormCreateProblem() {
   const handleNewDataChange = (event: any) => {
     SetNewDataProblem({ ...dataProblem, [event.target.name]: event.target.value })
   }
-  console.log(dataProblem)
+
   return (
     <div>
       <form onSubmit={handleCreateNewData} className={styles.form} action="">
@@ -96,7 +96,7 @@ export function FormCreateProblem() {
                 onChange={handleNewDataChange}
               >
                 <FormControlLabel value="Primal" control={<Radio />} label="Primal" />
-                <FormControlLabel value="Dual"   control={<Radio />} label="Dual" />
+                <FormControlLabel value="Dual" control={<Radio />} label="Dual" />
               </RadioGroup>
             </div>
             <div>
@@ -110,7 +110,7 @@ export function FormCreateProblem() {
                 onChange={handleNewDataChange}
               >
                 <FormControlLabel value="Tabular" control={<Radio />} label="Tabular" />
-                <FormControlLabel value="Graphic" control={<Radio />} label="Graphic" />
+                <FormControlLabel value="Graph" control={<Radio />} label="Graph" />
               </RadioGroup>
             </div>
           </div>
@@ -129,7 +129,7 @@ export function FormCreateProblem() {
               value={dataProblem.numberConstraints}
               onChange={handleNewDataChange}
               id="numberConstraints"
-              label="Numero Restricao"
+              label="Numero de Variaveis de Restricao"
               type='number'
               color="success"
               focused
