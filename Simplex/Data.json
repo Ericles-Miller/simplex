@@ -1,10 +1,6 @@
 {
-    "dataProblem": [
-        {
-            "numberVariable": 3,
-            "numberConstraints": 3,
-            "method": "maximizar",
-            "option": "tabular"
-        }
-    ]
+    "numberVariable": 3,
+    "numberConstraints": 3,
+    "method": "maximizar",
+    "option": "tabular"
 }

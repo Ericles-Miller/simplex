@@ -27,7 +27,7 @@ export function GenerateProblem() {
     type: object.data.type
   })
 
-  function HandleChangesVariable(row, item, value,) {
+  function HandleChangesVariable(row:any, item:any, value:any,) {
     setResult((previousState)=>{
       return {
         ...previousState,
@@ -44,7 +44,7 @@ export function GenerateProblem() {
     })
   }
   
-  function HandleChangesConstraints(item,value){
+  function HandleChangesConstraints(item:any,value:any){
     setResult((previousState)=>{
       return {
         ...previousState,
@@ -155,3 +155,5 @@ export function GenerateProblem() {
     </div>
   )
 }
+
+
