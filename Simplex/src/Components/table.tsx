@@ -65,17 +65,8 @@ export function Table() {
             (rd.base).map((item: string, index:number) =>(  
                 <tr>
                   <td>{item}</td>
-                  {/* {
-                    (rd.table).map((row: any) =>(  */
+                  {
                     rd.table[index].map((subItem: any) => <td>{subItem}</td>)
-                     
-                      // row.map((subItem: any) => <td>{subItem}</td>)
-                    
-                    // (rd.table).map((item: any) =>(
-                    //   item.array.forEach((element: any,index: number ) => {
-                    //     console.log(element);
-                    //   })
-                    // ))
                   }
                 </tr>
             ))
