@@ -2,41 +2,6 @@
     margin-bottom: 2rem;
 }
 
-/*th, td {
-    padding: 0.5rem;
-    font-family: "Roboto","Helvetica","Arial",sans-serif;
-    font-weight: 500;
-    font-size: 0.875rem;
-    line-height: 1.75;
-    letter-spacing: 0.02857em;
-    text-transform: uppercase;
-    text-align: center;
-
-}
-table {
-    width: 100%;
-}
-th {
-    color: var(--green-600);
-    background: var(--gray-500);
-    border-radius: 4px;
-    min-width: 2rem;
-    padding: 6px 16px;
-    margin: 0;
-    padding: 0;
-    border-collapse: collapse;
-    
-    
-}
-
-td {
-    color: var(--white);
-    background: transparent;
-    padding: 6px 16px;
-    border: none;
-
-}*/
-
 .tableContainer {
     flex: 1;
     overflow: auto;
