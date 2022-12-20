@@ -35,7 +35,7 @@ export function PivotArray() {
       <Card2>
         <Table></Table>
       </Card2>
-      <button onClick={() => renderData()}></button>
+      {/* <button onClick={() => renderData()}></button> */}
       {/* <ul>
         {receivedData.map((rd: any) => (
           <>

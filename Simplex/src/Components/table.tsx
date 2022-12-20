@@ -54,27 +54,16 @@ export function Table() {
 
   return (
     <div>
-
       <div className={styles.divText}>
-
         <strong style={{ color: '#1C724B' }}>Ponto Ótimo:</strong>
-
         <label > [ -2,0; 3,0; -0,0; 0,0; 0,0; 0,0; ]</label>
-
       </div>
-
       <div className={styles.divText}>
-
         <strong style={{ color: '#1C724B' }}>Valor Otimo: </strong>
-
         <label >numero qualquer</label>
-
       </div>
-
       <div className={styles.goodPoint}>
-
         <strong>Nao foi possivel encontrar a solucao inteira </strong>
-
       </div>
 
       <div>
