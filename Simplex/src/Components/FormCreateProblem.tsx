@@ -9,6 +9,7 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import FormLabel from '@mui/material/FormLabel';
 
 import { useContextProblem } from "../context/ProblemContentex";
+import { green } from "@mui/material/colors";
 // import {useHistory} from 'react-router-dom';
 
 
@@ -64,6 +65,7 @@ export function FormCreateProblem() {
 
   const handleNewDataChange = (event: any) => {
     SetNewDataProblem({ ...dataProblem, [event.target.name]: event.target.value })
+    SetNewDataProblem({ ...dataProblem, [event.target.name]: event.target.value })
   }
 
   return (
@@ -71,7 +73,7 @@ export function FormCreateProblem() {
       <form onSubmit={handleCreateNewData} className={styles.form} action="">
         <div className={styles.number}>
           <div className={styles.inputRadio}>
-            <div>
+            <div className={styles.FormLabel}>
               <FormLabel id="demo-row-radio-buttons-group-label">Método</FormLabel>
               <RadioGroup
                 row
@@ -80,13 +82,23 @@ export function FormCreateProblem() {
                 value={dataProblem?.method}
                 onChange={handleNewDataChange}
               >
-                <FormControlLabel value="Maximizar" control={<Radio />} label="Maximizar" />
-                <FormControlLabel value="Minimizar" control={<Radio />} label="Minimizar" />
+                <FormControlLabel value="Maximizar" control={<Radio sx={{
+                  color: 'green',
+                  '&.Mui-checked': {
+                    color: 'green',
+                  },
+                }} />} label="Maximizar" />
+                <FormControlLabel value="Minimizar" control={<Radio sx={{
+                  color: 'green',
+                  '&.Mui-checked': {
+                    color: 'green',
+                  },
+                }} />} label="Minimizar" />
               </RadioGroup>
             </div>
 
-            <div>
-              <FormLabel id="demo-row-radio-buttons-group-label">Objetivo</FormLabel>
+            <div className={styles.FormLabel}>
+              <FormLabel id="demo-row-radio-buttons-group-label" >Objetivo</FormLabel>
               <RadioGroup
                 row
                 aria-labelledby="demo-row-radio-buttons-group-label"
@@ -94,12 +106,23 @@ export function FormCreateProblem() {
                 color="success"
                 value={dataProblem?.option}
                 onChange={handleNewDataChange}
+
               >
-                <FormControlLabel value="Primal" control={<Radio />} label="Primal" />
-                <FormControlLabel value="Dual" control={<Radio />} label="Dual" />
+                <FormControlLabel value="Primal" control={<Radio sx={{
+                  color: 'green',
+                  '&.Mui-checked': {
+                    color: 'green',
+                  },
+                }} />} label="Primal" />
+                <FormControlLabel value="Dual" control={<Radio sx={{
+                  color: 'green',
+                  '&.Mui-checked': {
+                    color: 'green',
+                  },
+                }} />} label="Dual" />
               </RadioGroup>
             </div>
-            <div>
+            <div className={styles.FormLabel}>
               <FormLabel id="demo-row-radio-buttons-group-label">Objetivo2</FormLabel>
               <RadioGroup
                 row
@@ -109,8 +132,18 @@ export function FormCreateProblem() {
                 value={dataProblem?.type}
                 onChange={handleNewDataChange}
               >
-                <FormControlLabel value="Tabular" control={<Radio />} label="Tabular" />
-                <FormControlLabel value="Graph" control={<Radio />} label="Graph" />
+                <FormControlLabel value="Tabular" control={<Radio sx={{
+                  color: 'green',
+                  '&.Mui-checked': {
+                    color: 'green',
+                  },
+                }} />} label="Tabular" />
+                <FormControlLabel value="Graph" control={<Radio sx={{
+                  color: 'green',
+                  '&.Mui-checked': {
+                    color: 'green',
+                  },
+                }} />} label="Graph" />
               </RadioGroup>
             </div>
           </div>
@@ -123,6 +156,7 @@ export function FormCreateProblem() {
               label="Numero de Variaveis de Decisao"
               color="success"
               focused
+              required
             />
             <TextField
               name="numberConstraints"
@@ -133,14 +167,15 @@ export function FormCreateProblem() {
               type='number'
               color="success"
               focused
+              required
             />
           </div>
         </div>
         <footer>
-          
-            <Button type="submit" variant="contained" color="success">
-              Continuar
-            </Button>
+
+          <Button type="submit" variant="contained" color="success">
+            Continuar
+          </Button>
         </footer>
       </form>
     </div>
