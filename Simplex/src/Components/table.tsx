@@ -55,22 +55,30 @@ export function Table() {
             <tr>
                 <td>Z</td>
                 {
-                  (rd.z).map((item: string) =>(  
+                  (rd.z).map((item: string) =>(
                       <td>{item}</td>
                   ))
                 }
             </tr>
+
           {
-              (rd.base).map((item: string) =>(  
-                  <tr>
-                    <td>{item}</td>
-                    {
-                      (rd.table).map((item: any) =>( 
-                        item.map((subItem: any) => <td>{subItem}</td>)
-                      ))
-                    }
-                  </tr>
-              ))
+            (rd.base).map((item: string, index:number) =>(  
+                <tr>
+                  <td>{item}</td>
+                  {/* {
+                    (rd.table).map((row: any) =>(  */
+                    rd.table[index].map((subItem: any) => <td>{subItem}</td>)
+                     
+                      // row.map((subItem: any) => <td>{subItem}</td>)
+                    
+                    // (rd.table).map((item: any) =>(
+                    //   item.array.forEach((element: any,index: number ) => {
+                    //     console.log(element);
+                    //   })
+                    // ))
+                  }
+                </tr>
+            ))
           }
           </tbody>
         </table>
