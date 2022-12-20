@@ -10,7 +10,7 @@ export function GraphFunction() {
   const [receivedData, newReceivedData] = useState([] as any)
 
   const getData = async () => {
-    const response = await fetch('./../../teste.json');
+    const response = await fetch('./../../functionGraph.json');
     const data = await response.json();
     newReceivedData(data);
     console.log("no get", receivedData.base)
