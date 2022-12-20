@@ -24,7 +24,7 @@ export function PivotArray() {
   const renderData = () => {
     console.log("no render", receivedData.base)
   }
-
+  console.log(receivedData)
 
   // {base, variable, table, erro, cb, z, artificial, pivo}
 
