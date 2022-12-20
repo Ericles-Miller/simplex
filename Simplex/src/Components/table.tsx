@@ -28,7 +28,7 @@ export function Table() {
     },
     numberTable: Array.from({
       length: receivedData.length
-    }).map(() => {}),
+    }).map(() => { }),
 
   })
 
@@ -54,55 +54,102 @@ export function Table() {
 
   return (
     <div>
-    <div className={styles.divText}>
-      <strong style={{color: '#1C724B'}}>Ponto Ótimo:</strong>
-      <label > [ -2,0; 3,0; -0,0; 0,0; 0,0; 0,0; ]</label>
-    </div>
-    <div className={styles.divText}>
-      <strong style={{color: '#1C724B'}}>Valor Otimo: </strong>
-      <label >numero qualquer</label>
-    </div>
-    <div className={styles.goodPoint}>
-      <strong>Nao foi possivel encontrar a solucao inteira </strong>
-    </div>  
+
+      <div className={styles.divText}>
+
+        <strong style={{ color: '#1C724B' }}>Ponto Ótimo:</strong>
+
+        <label > [ -2,0; 3,0; -0,0; 0,0; 0,0; 0,0; ]</label>
+
+      </div>
+
+      <div className={styles.divText}>
+
+        <strong style={{ color: '#1C724B' }}>Valor Otimo: </strong>
+
+        <label >numero qualquer</label>
+
+      </div>
+
+      <div className={styles.goodPoint}>
+
+        <strong>Nao foi possivel encontrar a solucao inteira </strong>
+
+      </div>
 
       <div>
         {Array.from({
           length: receivedData.length
         }).map((item, index) => {
-            return <div>
-              {/* {receivedData.map((rd: any) => ( */}
-        <table className={styles.table}>
-          <tr>
-            <th><strong>Base</strong></th>
-            <li></li>
-          </tr>
-
-          <tr>
-            <td><strong>{/*{rd.base[0]}*/}</strong></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td><strong>{/*{rd.base[0]}*/}</strong></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td><strong>{/*{rd.base[0]}*/}</strong></td>
-            <td>Roland Mendel</td>
-            <td>Austria</td>
-          </tr>
-          
-        </table>
-      {/* ))} */}
+          return <div>
+            {/* {receivedData.map((rd: any) => ( */}
+            <div className={styles.tableContainer}>
+              <table className={styles.table}>
+                <thead>
+                  <tr>
+                    <th>BASE</th>
+                    <th>Z</th>
+                    <th>x1</th>
+                    <th>x2</th>
+                    <th>x3</th>
+                    <th>x4</th>
+                    <th>x5</th>
+                    <th>x6</th>
+                    <th>B</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>{/*{rd.base[0]}*/}</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>SX1</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>SX2</td>
+                    <td>Roland Mendel</td>
+                    <td>Austria</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>SX3</td>
+                    <td>Helen Bennett</td>
+                    <td>UK</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
+            {/* ))} */}
+          </div>
         })}
       </div>
-
-      
     </div>
   );
 }
