@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react"
 import { Card2 } from "./Card2";
-import { Table } from "./table";
+import { Table } from "./Table";
 
 
 

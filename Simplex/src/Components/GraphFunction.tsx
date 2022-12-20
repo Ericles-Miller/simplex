@@ -13,7 +13,6 @@ export function GraphFunction() {
     const response = await fetch('./../../functionGraph.json');
     const data = await response.json();
     newReceivedData(data);
-    console.log("no get", receivedData.base)
     const item = data;
   }
 
@@ -21,9 +20,7 @@ export function GraphFunction() {
     getData();
   }, []);
   
-  console.log(receivedData.nicePoint)
-
-  
+ 
   
   return (
     <div>
