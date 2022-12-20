@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react"
 import { Card2 } from "./Card2";
-import { Table } from "./table";
+import { Table } from "./Table";
 
 
 
@@ -24,7 +24,7 @@ export function PivotArray() {
   const renderData = () => {
     console.log("no render", receivedData.base)
   }
-
+  console.log(receivedData)
 
   // {base, variable, table, erro, cb, z, artificial, pivo}
 
@@ -35,7 +35,7 @@ export function PivotArray() {
       <Card2>
         <Table></Table>
       </Card2>
-      <button onClick={() => renderData()}></button>
+      {/* <button onClick={() => renderData()}></button> */}
       {/* <ul>
         {receivedData.map((rd: any) => (
           <>
