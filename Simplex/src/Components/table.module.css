@@ -3,7 +3,6 @@
 }
 
 th, td {
-    border: 1px solid;
     padding: 0.5rem;
     font-family: "Roboto","Helvetica","Arial",sans-serif;
     font-weight: 500;
@@ -18,11 +17,22 @@ table {
     width: 100%;
 }
 th {
-    color: var(--white);
-    background-color: var(--green-600);
+    color: var(--green-600);
+    background: var(--gray-500);
     border-radius: 4px;
     min-width: 2rem;
     padding: 6px 16px;
-    border: 3px var(--green-600);
+    margin: 0;
+    padding: 0;
+    border-collapse: collapse;
     
+    
+}
+
+td {
+    color: var(--white);
+    background: transparent;
+    padding: 6px 16px;
+    border: none;
+
 }
