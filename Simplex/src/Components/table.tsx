@@ -17,45 +17,69 @@ export function Table() {
       <strong>Nao foi possivel encontrar a solucao inteira </strong>
     </div>  
 
-
-      <table className={styles.table}>
-        <tr>
-          <th><strong>Base</strong></th>
-          <th><strong>Z</strong></th>
-          <th><strong>variable x1</strong></th>
-          <th><strong>variable x2</strong></th>
-          <th><strong>variable x3</strong></th>
-          <th><strong>variable x4</strong></th>
-          <th><strong>variable x5</strong></th>
-          <th><strong>variable x6</strong></th>
-          <th><strong>B</strong></th>
-        </tr>
-
-        <tr>
-          <td><strong>Z</strong></td>
-          <td></td>
-          <td></td>
-          <td></td>
-        </tr>
-        <tr>
-        <td><strong>SX1</strong></td>
-          <td></td>
-          <td></td>
-          <td></td>
-        </tr>
-        <tr>
-          <td><strong>SX2</strong></td>
-          <td>Roland Mendel</td>
-          <td>Austria</td>
-        </tr>
-        <tr>
-          <td><strong>SX3</strong></td>
-
-          <td>Helen Bennett</td>
-          <td>UK</td>
-        </tr>
-        
-      </table>
+      <div className={styles.tableContainer}>
+        <table className={styles.table}>
+          <thead>
+            <tr>
+              <th>BASE</th>
+              <th>Z</th>
+              <th>x1</th>
+              <th>x2</th>
+              <th>x3</th>
+              <th>x4</th>
+              <th>x5</th>
+              <th>x6</th>
+              <th>B</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Z</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>SX1</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>SX2</td>
+              <td>Roland Mendel</td>
+              <td>Austria</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>SX3</td>
+              <td>Helen Bennett</td>
+              <td>UK</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+          </tbody> 
+        </table>
+      </div>
     </div>
   );
 }
