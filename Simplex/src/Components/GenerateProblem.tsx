@@ -13,7 +13,7 @@ interface IDataProblem {
 
 export function GenerateProblem() {
   const object = useContextProblem()
-  console.log(object.data, 'aaaaa')
+  console.log(object.data)
 
   const [result, setResult] = useState({
     constraintsMethod: {
