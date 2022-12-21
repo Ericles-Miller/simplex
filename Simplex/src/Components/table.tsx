@@ -1,19 +1,11 @@
 import { useEffect, useRef, useState } from 'react';
 import styles from './table.module.css'
-import { object } from 'prop-types';
-
-
 
 export function Table() {
   const [receivedData, setReceivedData] = useState<object[]>()
   const [nicePoint, setNicePoint] = useState<object[]>()
   const pivot: Array<any> = []
-  // const test:  Array<number, number> = []
-  let row: Array<any> = []
-  let column:Array<any> = []
-  //#F2E399
-  const [backgroundColorPivot, setBackgroundColorPivot] = useState('')
-  const [colorPivot, setColorPivot] = useState('')
+  
 
   const getData = async () => {
     const response = await fetch('./../../result.json');
@@ -35,18 +27,7 @@ export function Table() {
 
   return (
     <>
-     {/* { receivedData != undefined && receivedData.map((rd:any)=>{
-        rd.pivo.map(((pivot: any, indexPivot: number) => console.log(pivot)))      
-     })}   */}
-
-      { receivedData != undefined && receivedData.map((rd: any) => (
-        (rd.base).map((item: string, index: number) => (
-          rd.table[index].map((value: any, cont:number ) => (
-              index == (rd.pivo[0]) && cont == (rd.pivo[1]) && console.log(index)
-            ))
-          ))
-        ))  
-    }
+      
       <div>
         <div className={styles.divText}>
           <strong style={{ color: '#1C724B' }}>Ponto Ótimo:</strong>
@@ -88,7 +69,6 @@ export function Table() {
                   }
                   <tr>
                     <th>BASE</th>
-
                     {
                       (rd.variable).map((item: string) => (
                         <th>{item}</th>
@@ -98,11 +78,9 @@ export function Table() {
                 </thead>
                 <tbody>
                   <tr>
-
                   </tr>             
                   { 
                     (rd.base).map((item: string, index: number) => (
-                      
                       <tr>
                         <td>{item}</td>
                         {                         
@@ -111,11 +89,9 @@ export function Table() {
                             : <td>{subItem}</td>
                           ))
                         }
-                        
                       </tr>
                     ))
                   }
-                  
                   <td>Z</td>
                   <td></td>
                   {
