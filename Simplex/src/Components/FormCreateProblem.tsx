@@ -136,10 +136,24 @@ export function FormCreateProblem() {
                     color: 'green',
                   },
                 }} />} label="Graph" />
+
               </RadioGroup>
             </div>
           </div>
           <div className={styles.inputText}>
+            {dataProblem.type === 'Graph' ? <TextField
+              name="numberVariable"
+              value={dataProblem?.numberVariable}
+              onChange={handleNewDataChange}
+              id="numberVariable"
+              label="Numero de Variaveis de Decisao"
+              type='number'
+              color="success"
+              focused
+              required
+              InputProps={{ inputProps: { min: 0, max:2 } }}
+              
+            /> :
             <TextField
               name="numberVariable"
               value={dataProblem?.numberVariable}
@@ -150,6 +164,20 @@ export function FormCreateProblem() {
               color="success"
               focused
               required
+              InputProps={{ inputProps: { min: 0 } }}
+              
+            />} 
+            <TextField
+              name="numberVariable"
+              value={dataProblem?.numberVariable}
+              onChange={handleNewDataChange}
+              id="numberVariable"
+              label="Numero de Variaveis de Decisao"
+              type='number'
+              color="success"
+              focused
+              required
+              
             />
             <TextField
               name="numberConstraints"
@@ -160,6 +188,7 @@ export function FormCreateProblem() {
               type='number'
               color="success"
               focused
+              InputProps={{ inputProps: { min: 0 } }}
               required
             />
           </div>

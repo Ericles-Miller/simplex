@@ -124,7 +124,8 @@ export function GenerateProblem() {
                       {column != object.data.numberConstraints - 1 ? <strong style={{ marginLeft: '0.5rem', marginRight: '0.5rem' }}>+</strong> : null}
                     </div>
                   })}
-                  <select name="" id=""
+                  <select 
+                    required
                     onChange={(event) => HandleChangesVariable(row, 'simbol', event.target.value)}
                     style={{ marginLeft: '0.5rem', marginRight: '0.5rem' }}
                   >

@@ -27,7 +27,6 @@ export function Table() {
 
   return (
     <>
-      
       <div>
         <div className={styles.divText}>
           <strong style={{ color: '#1C724B' }}>Ponto Ótimo:</strong>
