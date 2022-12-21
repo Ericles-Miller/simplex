@@ -58,7 +58,6 @@ export function GenerateProblem() {
 
   function handleSubmit() {
     const link = document.createElement('a')
-
     link.download = `data.json`
 
     const blob = new Blob([JSON.stringify(result)], {
@@ -67,6 +66,8 @@ export function GenerateProblem() {
 
     link.href = window.URL.createObjectURL(blob)
     link.click()
+
+   
   }
 
 

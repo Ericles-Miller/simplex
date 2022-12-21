@@ -28,9 +28,6 @@ export function FormCreateProblem() {
   const object = useContextProblem()
   const history = useNavigate()
 
-  const object = useContextProblem()
-  const navigate = useNavigate()
-
   const postData = () => {
     fetch('http://localhost:3003/dataProblem', {
       method: 'POST',
