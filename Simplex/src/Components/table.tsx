@@ -6,24 +6,36 @@ import { object } from 'prop-types';
 
 export function Table() {
   const [receivedData, setReceivedData] = useState<object[]>()
-
+  const [nicePoint, setNicePoint]       = useState<object[]>()
+  
   const getData = async () => {
     const response = await fetch('./../../result.json');
     const data = await response.json();
     setReceivedData(data);
   }
 
+  const getDataNicePoint = async () => {
+    const response = await fetch('./../../nicePoint.json');
+    const dataNicePoint = await response.json();
+    setNicePoint(dataNicePoint);
+  }
+
   useEffect(() => {
     getData();
+    getDataNicePoint();
   }, []);
 
+  console.log(nicePoint)
 
   return (
     <>
     <div>
       <div className={styles.divText}>
         <strong style={{ color: '#1C724B' }}>Ponto Ótimo:</strong>
-        <label > [ -2,0; 3,0; -0,0; 0,0; 0,0; 0,0; ]</label>
+        { nicePoint != undefined &&  nicePoint.map((item:any)=>(
+            <label >Z:{item.solution.Z} X1:{item.solution.X1} X2:{item.solution.X2} X3:{item.solution.X3} </label>
+          ))
+        }
       </div>
       <div className={styles.divText}>
         <strong style={{ color: '#1C724B' }}>Valor Otimo: </strong>

@@ -5,10 +5,6 @@ import { Table } from "./Table";
 
 export function PivotArray() {
 
-  const [receivedData, newReceivedData] = useState([] as any)
-
-  
-
   return (
     <div>
       <Card2>
