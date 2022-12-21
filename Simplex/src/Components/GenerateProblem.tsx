@@ -93,6 +93,7 @@ export function GenerateProblem() {
                   focused
                   onChange={(event) => HandleChangesConstraints(`x${index + 1}`, event.target.value)}
                   required
+                  InputProps={{ inputProps: { min: 0 } }}
                 />
                 {index != object.data.numberConstraints - 1 ? <strong style={{ marginLeft: '0.5rem' }}>+</strong> : null}
               </div>
@@ -120,6 +121,7 @@ export function GenerateProblem() {
                         focused
                         onChange={(event) => HandleChangesVariable(row, `x${column + 1}`, event.target.value)}
                         required
+                        InputProps={{ inputProps: { min: 0 } }}
                       />
                       {column != object.data.numberConstraints - 1 ? <strong style={{ marginLeft: '0.5rem', marginRight: '0.5rem' }}>+</strong> : null}
                     </div>
@@ -141,6 +143,7 @@ export function GenerateProblem() {
                     focused
                     onChange={(event) => HandleChangesVariable(row, 'result', event.target.value)}
                     required
+                    //InputProps={{ inputProps: { min: 0 } }}
                   />
                 </div>
               )

@@ -141,7 +141,7 @@ export function FormCreateProblem() {
             </div>
           </div>
           <div className={styles.inputText}>
-            {dataProblem.type === 'Graph' ? <TextField
+            {dataProblem.type === "Graph" ? <TextField
               name="numberVariable"
               value={dataProblem?.numberVariable}
               onChange={handleNewDataChange}
@@ -151,11 +151,12 @@ export function FormCreateProblem() {
               color="success"
               focused
               required
-              InputProps={{ inputProps: { min: 0, max:2 } }}
+              InputProps={{ inputProps: { min: 1, max:2 } }}
               
             /> :
             <TextField
               name="numberVariable"
+              InputProps={{ inputProps: { min: 1 } }}
               value={dataProblem?.numberVariable}
               onChange={handleNewDataChange}
               id="numberVariable"
@@ -164,21 +165,9 @@ export function FormCreateProblem() {
               color="success"
               focused
               required
-              InputProps={{ inputProps: { min: 0 } }}
               
             />} 
-            <TextField
-              name="numberVariable"
-              value={dataProblem?.numberVariable}
-              onChange={handleNewDataChange}
-              id="numberVariable"
-              label="Numero de Variaveis de Decisao"
-              type='number'
-              color="success"
-              focused
-              required
-              
-            />
+            
             <TextField
               name="numberConstraints"
               value={dataProblem?.numberConstraints}
@@ -188,7 +177,7 @@ export function FormCreateProblem() {
               type='number'
               color="success"
               focused
-              InputProps={{ inputProps: { min: 0 } }}
+              InputProps={{ inputProps: { min: 1 } }}
               required
             />
           </div>
