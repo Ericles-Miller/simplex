@@ -2,18 +2,10 @@ import { useEffect, useRef, useState } from 'react';
 import styles from './table.module.css'
 import { object } from 'prop-types';
 
-
-
 export function Table() {
   const [receivedData, setReceivedData] = useState<object[]>()
   const [nicePoint, setNicePoint] = useState<object[]>()
   const pivot: Array<any> = []
-  // const test:  Array<number, number> = []
-  let row: Array<any> = []
-  let column:Array<any> = []
-  //#F2E399
-  const [backgroundColorPivot, setBackgroundColorPivot] = useState('')
-  const [colorPivot, setColorPivot] = useState('')
 
   const getData = async () => {
     const response = await fetch('./../../result.json');
