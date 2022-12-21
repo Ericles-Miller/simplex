@@ -7,7 +7,10 @@ import { object } from 'prop-types';
 export function Table() {
   const [receivedData, setReceivedData] = useState<object[]>()
   const [nicePoint, setNicePoint] = useState<object[]>()
-  const pivot: Array<number> = []
+  const pivot: Array<any> = []
+  // const test:  Array<number, number> = []
+  let row: Array<any> = []
+  let column:Array<any> = []
   //#F2E399
   const [backgroundColorPivot, setBackgroundColorPivot] = useState('')
   const [colorPivot, setColorPivot] = useState('')
@@ -32,6 +35,18 @@ export function Table() {
 
   return (
     <>
+     {/* { receivedData != undefined && receivedData.map((rd:any)=>{
+        rd.pivo.map(((pivot: any, indexPivot: number) => console.log(pivot)))      
+     })}   */}
+
+      { receivedData != undefined && receivedData.map((rd: any) => (
+        (rd.base).map((item: string, index: number) => (
+          rd.table[index].map((value: any, cont:number ) => (
+              index == (rd.pivo[0]) && cont == (rd.pivo[1]) && console.log(index)
+            ))
+          ))
+        ))  
+    }
       <div>
         <div className={styles.divText}>
           <strong style={{ color: '#1C724B' }}>Ponto Ótimo:</strong>
@@ -84,20 +99,23 @@ export function Table() {
                 <tbody>
                   <tr>
 
-                  </tr>
-
-                  {
+                  </tr>             
+                  { 
                     (rd.base).map((item: string, index: number) => (
+                      
                       <tr>
                         <td>{item}</td>
-                        {
-                          rd.table[index].map((subItem: any) =>
-                            <td style={{backgroundColor: `${backgroundColorPivot}`, color: `${colorPivot}`}}>{subItem}</td>)
+                        {                         
+                          rd.table[index].map((subItem: any, indexNumber: number) => (
+                            index == (rd.pivo[0]) && indexNumber == (rd.pivo[1]) ? <td style={{backgroundColor: '#F2E399', color: '#000'}}>{subItem}</td>
+                            : <td>{subItem}</td>
+                          ))
                         }
-
+                        
                       </tr>
                     ))
                   }
+                  
                   <td>Z</td>
                   <td></td>
                   {
