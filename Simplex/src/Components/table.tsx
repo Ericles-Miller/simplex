@@ -107,7 +107,7 @@ export function Table() {
                         <td>{item}</td>
                         {                         
                           rd.table[index].map((subItem: any, indexNumber: number) => (
-                            index == (rd.pivo[0]) && indexNumber == (rd.pivo[1]) ? <td style={{backgroundColor: '#F2E399', color: '#000'}}>{subItem}</td>
+                            index == (rd.pivo[0]) && indexNumber == (rd.pivo[1]) ? <td style={{backgroundColor: '#7890a8', color: 'white'}}>{subItem}</td>
                             : <td>{subItem}</td>
                           ))
                         }
