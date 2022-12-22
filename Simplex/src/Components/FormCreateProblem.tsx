@@ -114,7 +114,7 @@ export function FormCreateProblem() {
               </RadioGroup>
             </div>
             <div className={styles.FormLabel}>
-              <FormLabel id="demo-row-radio-buttons-group-label">Objetivo2</FormLabel>
+              <FormLabel id="demo-row-radio-buttons-group-label">Modo</FormLabel>
               <RadioGroup
                 row
                 aria-labelledby="demo-row-radio-buttons-group-label"
@@ -140,39 +140,39 @@ export function FormCreateProblem() {
             </div>
           </div>
           <div className={styles.inputText}>
-            { dataProblem.type === "Graph" ? <TextField
-               name="numberVariable"
-               value={dataProblem?.numberVariable}
-               onChange={handleNewDataChange}
-               id="numberVariable"
-               label="Numero de Variaveis de Decisao"
-               type='number'
-               color="success"
-               focused
-               required
-               InputProps={{ inputProps: { min: 1, max:2 } }}
-                
-              /> :
-              <TextField
-                name="numberVariable"
-                value={dataProblem?.numberVariable}
-                onChange={handleNewDataChange}
-                id="numberVariable"
-                label="Numero de Variaveis de Decisao"
-                type='number'
-                color="success"
-                focused
-                required
-                InputProps={{ inputProps: { min: 1 } }}
-              />
-            } 
+            {dataProblem.type === "Graph" ? <TextField
+              name="numberVariable"
+              value={dataProblem?.numberVariable}
+              onChange={handleNewDataChange}
+              id="numberVariable"
+              label="Número de Variáveis de Decisão"
+              type='number'
+              color="success"
+              focused
+              required
+              InputProps={{ inputProps: { min: 1, max:2 } }}
+              
+            /> :
+            <TextField
+              name="numberVariable"
+              InputProps={{ inputProps: { min: 1 } }}
+              value={dataProblem?.numberVariable}
+              onChange={handleNewDataChange}
+              id="numberVariable"
+              label="Número de Variáveis de Decisão"
+              type='number'
+              color="success"
+              focused
+              required
+              
+            />} 
             
             <TextField
               name="numberConstraints"
               value={dataProblem.numberConstraints}
               onChange={handleNewDataChange}
               id="numberConstraints"
-              label="Numero de Variaveis de Restricao"
+              label="Número de Variáveis de Restrição"
               type='number'
               color="success"
               focused

@@ -2,17 +2,17 @@ import { Card, CardActionArea, CardActions, CardContent, Typography } from "@mui
 import styles from './Card.module.css';
 
 
-export function Card2({ children }:any) {
+export function Card3({ children }:any) {
   return (
     <Card className={styles.card}>
       <CardActionArea>
 
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">
-            Inserir Dados 
+            Resultado 
           </Typography>
           <Typography variant="body2">
-            <strong>Inserir os valores da Função na primeira linha. Depois preencha o sistemas com suas inequações</strong>
+            <strong></strong>
           </Typography>
         </CardContent>
       </CardActionArea>
