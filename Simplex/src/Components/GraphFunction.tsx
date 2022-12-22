@@ -1,6 +1,6 @@
-import { Card2 } from "./Card2";
+import { Card3 } from "./Card3";
 import styles from './GraphFunction.module.css';
-import Graph from './../assets/graph.jpg';
+import Graph from './../assets/graph.png';
 import { useEffect, useState } from "react";
 
 
@@ -24,7 +24,7 @@ export function GraphFunction() {
   
   return (
     <div>
-      <Card2>
+      <Card3>
         <div>
           <div className={styles.divText}>
             <strong style={{ color: '#1C724B' }}>Ponto Ótimo:</strong>
@@ -37,7 +37,7 @@ export function GraphFunction() {
 
           <img src={Graph} className={styles.img} />
         </div>
-      </Card2>
+      </Card3>
     </div>
   );
 }

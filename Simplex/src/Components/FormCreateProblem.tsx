@@ -113,7 +113,7 @@ export function FormCreateProblem() {
               </RadioGroup>
             </div>
             <div className={styles.FormLabel}>
-              <FormLabel id="demo-row-radio-buttons-group-label">Objetivo2</FormLabel>
+              <FormLabel id="demo-row-radio-buttons-group-label">Modo</FormLabel>
               <RadioGroup
                 row
                 aria-labelledby="demo-row-radio-buttons-group-label"
@@ -144,7 +144,7 @@ export function FormCreateProblem() {
               value={dataProblem?.numberVariable}
               onChange={handleNewDataChange}
               id="numberVariable"
-              label="Numero de Variaveis de Decisao"
+              label="Número de Variáveis de Decisão"
               type='number'
               color="success"
               focused
@@ -158,7 +158,7 @@ export function FormCreateProblem() {
               value={dataProblem?.numberVariable}
               onChange={handleNewDataChange}
               id="numberVariable"
-              label="Numero de Variaveis de Decisao"
+              label="Número de Variáveis de Decisão"
               type='number'
               color="success"
               focused
@@ -171,7 +171,7 @@ export function FormCreateProblem() {
               value={dataProblem?.numberConstraints}
               onChange={handleNewDataChange}
               id="numberConstraints"
-              label="Numero de Variaveis de Restricao"
+              label="Número de Variáveis de Restrição"
               type='number'
               color="success"
               focused
