@@ -1,6 +1,6 @@
 import { Card3 } from "./Card3";
 import styles from './GraphFunction.module.css';
-import Graph from './../assets/graph.png';
+import Graph from './../../scripts/figure/graph.png';
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 

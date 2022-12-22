@@ -28,18 +28,20 @@ export function PivotArray() {
 
   if (receivedData === undefined) {
     return (
-      <Card3>
-        <Box>
-          <CircularProgress />
-          <h2>Carregando Dados</h2>
-
-        </Box>
-      </Card3>
-    )
+      <div>
+        <Card3>
+          <Box>
+            <CircularProgress />
+            <h2>Carregando Dados</h2>
+          </Box>
+        </Card3> 
+        
+      </div>   
+    );
   }
-  
+
   else {
-    return(
+    return (
       <Card3>
         <Table></Table>
       </Card3>

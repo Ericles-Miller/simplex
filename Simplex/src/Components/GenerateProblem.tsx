@@ -111,7 +111,7 @@ export function GenerateProblem() {
   async function handleSubmit(event: any) {
 
     const link = document.createElement('a')
-    link.download = `data.json`
+    link.download = `problem.json`
 
     const blob =  new Blob([JSON.stringify(result)], {
       type: "application/json",
@@ -183,11 +183,13 @@ export function GenerateProblem() {
                       {column != object.data.numberConstraints - 1 ? <strong style={{ marginLeft: '0.5rem', marginRight: '0.5rem' }}>+</strong> : null}
                     </div>
                   })}
+
                   <select 
                     onChange={(event) => HandleChangesVariable(row, 'simbol', event.target.value)}
                     style={{ marginLeft: '0.5rem', marginRight: '0.5rem' }}
-                  >
-                    <option value='<='>{'<='}</option>
+                    required
+                  > 
+                    <option value='<=' selected="selected">{'<='}</option>
                     <option value='='>{'='}</option>
                     <option value='>='>{'>='}</option>
                   </select>
