@@ -1,19 +1,11 @@
 import { useEffect, useRef, useState } from 'react';
 import styles from './table.module.css'
-import { object } from 'prop-types';
-
-
 
 export function Table() {
   const [receivedData, setReceivedData] = useState<object[]>()
   const [nicePoint, setNicePoint] = useState<object[]>()
   const pivot: Array<any> = []
-  // const test:  Array<number, number> = []
-  let row: Array<any> = []
-  let column:Array<any> = []
-  //#F2E399
-  const [backgroundColorPivot, setBackgroundColorPivot] = useState('')
-  const [colorPivot, setColorPivot] = useState('')
+  
 
   const getData = async () => {
     const response = await fetch('./../../result.json');
@@ -35,44 +27,33 @@ export function Table() {
 
   return (
     <>
-     {/* { receivedData != undefined && receivedData.map((rd:any)=>{
-        rd.pivo.map(((pivot: any, indexPivot: number) => console.log(pivot)))      
-     })}   */}
-
-      { receivedData != undefined && receivedData.map((rd: any) => (
-        (rd.base).map((item: string, index: number) => (
-          rd.table[index].map((value: any, cont:number ) => (
-              index == (rd.pivo[0]) && cont == (rd.pivo[1]) && console.log(index)
-            ))
-          ))
-        ))  
-    }
       <div>
         <div className={styles.divText}>
           <strong style={{ color: '#1C724B' }}>Ponto Ótimo:</strong>
           {nicePoint != undefined && nicePoint.map((item: any) => (
-            <label >Z:{item.solution.Z} X1:{item.solution.X1} X2:{item.solution.X2} X3:{item.solution.X3} </label>
+            <label ><strong> X1:{item.solution.X1}    X2:{item.solution.X2}   X3:{item.solution.X3} </strong></label>
           ))
           }
         </div>
         <div className={styles.divText}>
           <strong style={{ color: '#1C724B' }}>Valor Otimo: </strong>
-          <label >numero qualquer</label>
+          {nicePoint != undefined && nicePoint.map((item: any) => (
+              <label ><strong>{item.solution.Z}</strong></label>
+            ))
+          }
         </div>
         <div className={styles.goodPoint}>
-          <strong>Nao foi possivel encontrar a solucao inteira </strong>
+        { receivedData != undefined && receivedData.map((item:any)=>(
+            item.erro !== '' && <strong>Não foi possível encontrar a solução inteira </strong>
+        ))
+        }
+          
         </div>
         {receivedData != undefined && receivedData.map((rd: any) => (
-          <p>{rd.erro}</p>
+          rd.erro !== '' && <p>{rd.erro}</p>
         ))}
 
-        {receivedData != undefined && receivedData.map((rd: any) => (
-          pivot.push(rd.pivo)
-        ))}
-
-        {console.log(pivot)}
-
-
+      
         <div>
           {receivedData != undefined && receivedData.map((rd: any) => (
             <div className={styles.tableContainer}>
@@ -88,7 +69,6 @@ export function Table() {
                   }
                   <tr>
                     <th>BASE</th>
-
                     {
                       (rd.variable).map((item: string) => (
                         <th>{item}</th>
@@ -98,11 +78,9 @@ export function Table() {
                 </thead>
                 <tbody>
                   <tr>
-
                   </tr>             
                   { 
                     (rd.base).map((item: string, index: number) => (
-                      
                       <tr>
                         <td>{item}</td>
                         {                         
@@ -111,11 +89,9 @@ export function Table() {
                             : <td>{subItem}</td>
                           ))
                         }
-                        
                       </tr>
                     ))
                   }
-                  
                   <td>Z</td>
                   <td></td>
                   {
