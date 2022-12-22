@@ -10,13 +10,13 @@ export function PivotArray() {
   const [nicePoint, setNicePoint] = useState<object[]>()
 
   const getData = async () => {
-    const response = await fetch('./../../result.json');
+    const response = await fetch('./../../problem/data.json');
     const data = await response.json();
     setReceivedData(data);
   }
 
   const getDataNicePoint = async () => {
-    const response = await fetch('./../../nicePoint.json');
+    const response = await fetch('../../../problem/nicePoint.json');
     const dataNicePoint = await response.json();
     setNicePoint(dataNicePoint);
   }
