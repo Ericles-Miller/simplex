@@ -1,11 +1,14 @@
 import { useEffect, useRef, useState } from 'react';
 import styles from './table.module.css'
+import { table } from 'console';
+import {  useNavigate } from 'react-router-dom';
 
 export function Table() {
   const [receivedData, setReceivedData] = useState<object[]>()
   const [nicePoint, setNicePoint] = useState<object[]>()
-  const pivot: Array<any> = []
   
+  const navigate = useNavigate()
+
 
   const getData = async () => {
     const response = await fetch('./../../result.json');
@@ -24,10 +27,14 @@ export function Table() {
     getDataNicePoint();
   }, []);
 
-
+  
+  
   return (
     <>
       <div>
+        {receivedData != undefined && receivedData.map((item: any) => (
+          item.base.length === 0 && window.location.reload()  
+        )) }
         <div className={styles.divText}>
           <strong style={{ color: '#1C724B' }}>Ponto Ótimo:</strong>
           {nicePoint != undefined && nicePoint.map((item: any) => (
