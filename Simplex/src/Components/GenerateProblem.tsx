@@ -19,8 +19,6 @@ export function GenerateProblem() {
   const object = useContextProblem() // recebi as var do content
   const navigate = useNavigate()
 
-  
-
   // nao mexa
   const [result, setResult] = useState({
     constraintsMethod: {
@@ -35,6 +33,7 @@ export function GenerateProblem() {
   })
 
   async function loadData() {
+    console.log('load')
     const response = await fetch('http://localhost:3000/data');
     const data = await response.json();
     setResult(data);
@@ -45,6 +44,7 @@ export function GenerateProblem() {
 }, [result])
 
   async function postData() {
+    console.log('post')
     fetch('http://localhost:3000/data', {
       method: 'POST',
       headers: {
@@ -62,6 +62,7 @@ export function GenerateProblem() {
 
    // funcao do json server 
    function handleCreateNewData(event: FormEvent){
+    console.log('handle')
     event.preventDefault();
     postData();
     //object.setData(result)
@@ -113,6 +114,9 @@ export function GenerateProblem() {
   }
   // nao mexa
   async function handleSubmit(event: any) {
+    
+    event.target.setCustomValidity("")
+    setResult({ ...result, [event.target.name]: event.target.value})
 
     const link = document.createElement('a')
     link.download = `problem.json`
@@ -122,13 +126,12 @@ export function GenerateProblem() {
     })
 
     link.href = window.URL.createObjectURL(blob)
-    //link.click()
+    link.click()
 
     if(object.data.type === 'Graph') {
-      navigate('/GraphFunction')
+      navigate('/AuxPage')
     }
     else{
-      <DeleayComponent />
       navigate('/PivotArray')
       
     }
@@ -137,7 +140,7 @@ export function GenerateProblem() {
   return (
     <div>
         <Card2 >
-        <form >
+        <form onSubmit={handleCreateNewData}>
           <div style={{ display: 'flex', marginBottom: '1.5rem', justifyContent: 'center', alignItems: "center" }}>
             <strong style={{ paddingRight: "1rem" }}>Função</strong>
             {Array.from({

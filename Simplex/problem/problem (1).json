@@ -1,0 +1,1 @@
+{"constraintsMethod":{"x1":"1","x2":"2"},"numberVariablesMethod":[{"x1":"4","x2":"4","result":"6","simbol":"<="},{"x1":"4","x2":"6","simbol":"<=","result":"7"}],"method":"Maximizar","option":"Dual","type":"Graph"}

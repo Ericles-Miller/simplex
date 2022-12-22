@@ -6,15 +6,18 @@ const DeleayComponent = () => {
   React.useEffect(() => {
     const timeout = setTimeout(() => {
       setShow(true)
-    }, 5000)
+    }, 20000)
 
     return () => clearTimeout(timeout)
 
   }, [show])
 
-  if (!show) return null
+  if (!show) {return null}
 
-  return <>OK, Render</>
+  else {
+    return <>OK, Render</>
+  }
+  
 }
 
 export default DeleayComponent
