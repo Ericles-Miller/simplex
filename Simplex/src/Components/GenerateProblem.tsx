@@ -1,9 +1,8 @@
 import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import { Card2 } from "./Card2";
 import { useContextProblem } from "../context/ProblemContentex";
-import { Box, Button, CircularProgress, NativeSelect, TextField } from "@mui/material";
+import {  Button, TextField } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import { Select } from '@mui/material';
 
 
 interface IDataProblem {
