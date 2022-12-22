@@ -1,8 +1,26 @@
 {
-  "data":[
+  "data": [
+    {},
     {
-      
+      "id": 0.7621106129889987,
+      "numberVariablesMethod": [
+        {
+          "x1": "2",
+          "simbol": "<=",
+          "result": "3"
+        },
+        {
+          "x1": "4",
+          "simbol": "=",
+          "result": "4"
+        }
+      ],
+      "constraintsMethod": {
+        "x1": "1"
+      },
+      "method": "Minimizar",
+      "option": "Dual",
+      "type": "Tabular"
     }
-
   ]
 }

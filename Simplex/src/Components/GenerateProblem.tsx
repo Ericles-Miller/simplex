@@ -34,14 +34,16 @@ export function GenerateProblem() {
 
   async function loadData() {
     console.log('load')
-    const response = await fetch('http://localhost:3000/data');
+    const response = await fetch('http://localhost:3000/data',{
+      method: 'get'
+    });
     const data = await response.json();
-    setResult(data);
+    console.log(data)
   }
   useEffect (() => {
     loadData();
     
-}, [result])
+}, [])
 
   async function postData() {
     console.log('post')
@@ -50,13 +52,14 @@ export function GenerateProblem() {
       headers: {
         'Content-Type': 'application/json'
       },
-      body: `{
-              "numberVariablesMethod": ${result.numberVariablesMethod}
-              "constraintsMethod"    : ${result.constraintsMethod},
-              "method": ${object.data.method},
-              "option": ${object.data.option},
-              "type"  : ${object.data.type}
-            }`
+      body: JSON.stringify({
+        "id": Math.random(),
+        "numberVariablesMethod": result.numberVariablesMethod,
+        "constraintsMethod"    : result.constraintsMethod,
+        "method": object.data.method,
+        "option": object.data.option,
+        "type"  : object.data.type,
+      })
     }).then(data => data.json())
   }
 
@@ -114,19 +117,15 @@ export function GenerateProblem() {
   }
   // nao mexa
   async function handleSubmit(event: any) {
+    await postData()
     
-    event.target.setCustomValidity("")
-    setResult({ ...result, [event.target.name]: event.target.value})
 
-    const link = document.createElement('a')
-    link.download = `problem.json`
+    
+    
 
-    const blob =  new Blob([JSON.stringify(result)], {
-      type: "application/json",
-    })
+    
 
-    link.href = window.URL.createObjectURL(blob)
-    link.click()
+    
 
     if(object.data.type === 'Graph') {
       navigate('/AuxPage')
