@@ -13,7 +13,7 @@ export function GraphFunction() {
 
 
   const getData = async () => {
-    const response = await fetch('./../../functionGraph.json');
+    const response = await fetch('./../../problem/functionGraph.json');
     const data = await response.json();
     newReceivedData(data);
     const item = data;

@@ -118,6 +118,13 @@ export function GenerateProblem() {
 
     link.href = window.URL.createObjectURL(blob)
     link.click()
+
+    if(object.data.type === 'Graph') {
+      navigate('/GraphFunction')
+    }
+    else{
+      navigate('/PivotArray')
+    }
   }
 
   // funcao do json server
