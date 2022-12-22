@@ -24,7 +24,7 @@ export function FormCreateProblem() {
   const [dataProblem, SetNewDataProblem] = useState<IDataProblem>({} as any)
 
   const object = useContextProblem()
-  const history = useNavigate()
+  const navigate = useNavigate()
 
   // async function postData() {
   //   fetch('http://localhost:3000/dataProblem', {
@@ -40,11 +40,11 @@ export function FormCreateProblem() {
   //           }`
   //   }).then(data => data.json())
   // }
-
+  // nao meche
   function handleCreateNewData(event: FormEvent) {
     event.preventDefault();
     object.setData(dataProblem)
-    history('/GenerateProblem')
+    navigate('/GenerateProblem')
   }
 
   // async function loadData() {

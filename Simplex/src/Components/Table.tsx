@@ -31,28 +31,29 @@ export function Table() {
         <div className={styles.divText}>
           <strong style={{ color: '#1C724B' }}>Ponto Ótimo:</strong>
           {nicePoint != undefined && nicePoint.map((item: any) => (
-            <label >Z:{item.solution.Z} X1:{item.solution.X1} X2:{item.solution.X2} X3:{item.solution.X3} </label>
+            <label ><strong> X1:{item.solution.X1}    X2:{item.solution.X2}   X3:{item.solution.X3} </strong></label>
           ))
           }
         </div>
         <div className={styles.divText}>
           <strong style={{ color: '#1C724B' }}>Valor Otimo: </strong>
-          <label >numero qualquer</label>
+          {nicePoint != undefined && nicePoint.map((item: any) => (
+              <label ><strong>{item.solution.Z}</strong></label>
+            ))
+          }
         </div>
         <div className={styles.goodPoint}>
-          <strong>Nao foi possivel encontrar a solucao inteira </strong>
+        { receivedData != undefined && receivedData.map((item:any)=>(
+            item.erro !== '' && <strong>Não foi possível encontrar a solução inteira </strong>
+        ))
+        }
+          
         </div>
         {receivedData != undefined && receivedData.map((rd: any) => (
-          <p>{rd.erro}</p>
+          rd.erro !== '' && <p>{rd.erro}</p>
         ))}
 
-        {receivedData != undefined && receivedData.map((rd: any) => (
-          pivot.push(rd.pivo)
-        ))}
-
-        {console.log(pivot)}
-
-
+      
         <div>
           {receivedData != undefined && receivedData.map((rd: any) => (
             <div className={styles.tableContainer}>

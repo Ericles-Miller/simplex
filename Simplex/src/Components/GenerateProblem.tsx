@@ -2,6 +2,7 @@ import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import { Card2 } from "./Card2";
 import { useContextProblem } from "../context/ProblemContentex";
 import { Button, TextField } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 interface IDataProblem {
   numberVariable: number,
@@ -14,6 +15,7 @@ interface IDataProblem {
 export function GenerateProblem() {
   const object = useContextProblem()
   console.log(object.data, 'aa')
+  const navigate = useNavigate()
 
 
 
@@ -98,6 +100,7 @@ export function GenerateProblem() {
   function handleSubmit(event: any) {
     const dirName = './../../';
 
+    
 
     const link = document.createElement('a')
     link.download = `data.json`
@@ -107,6 +110,16 @@ export function GenerateProblem() {
     })
     link.href = window.URL.createObjectURL(blob)
     link.click()
+
+    if(object.data.type == 'Graph'){
+      navigate('/GraphFunction');
+      
+    }
+    
+    else{
+      navigate('/PivotArray');
+    }
+
 
   }
 
@@ -196,6 +209,7 @@ export function GenerateProblem() {
             })}
           </div>
           <div style={{ marginTop: '2rem' }}>
+            {/* {object.data.type == 'Graph' ? <Button ></Button>} */}
             <Button onClick={handleSubmit} type="submit" variant="contained" color="success">
               Enviar Dados
             </Button>
