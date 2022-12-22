@@ -1,4 +1,4 @@
-import { FormEvent, useState } from "react";
+import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import { Card2 } from "./Card2";
 import { useContextProblem } from "../context/ProblemContentex";
 import { Button, TextField } from "@mui/material";
@@ -13,8 +13,11 @@ interface IDataProblem {
 
 export function GenerateProblem() {
   const object = useContextProblem()
-  console.log(object.data)
+  console.log(object.data, 'aa')
 
+
+
+  // nao mexa
   const [result, setResult] = useState({
     constraintsMethod: {
 
@@ -24,9 +27,37 @@ export function GenerateProblem() {
     }).map(() => { }),
     method: object.data.method,
     option: object.data.option,
-    type: object.data.type
+    type  : object.data.type
   })
 
+  // async function postData() {
+  //   fetch('http://localhost:3000/data', {
+  //     method: 'POST',
+  //     headers: {
+  //       'Content-Type': 'application/json'
+  //     },
+  //     body: `{
+  //             "numberVariablesMethod": ${result.numberVariablesMethod}
+  //             "constraintsMethod"    : ${result.constraintsMethod},
+  //             "method": ${object.data.method},
+  //             "option": ${object.data.option},
+  //             "type"  : ${object.data.type}
+  //           }`
+  //   }).then(data => data.json())
+  // }
+
+  // async function loadData() {
+  //   const response = await fetch('http://localhost:3000/data');
+  //   const data = await response.json();
+
+  //   setResult(data);
+  // }
+
+//   useEffect (() => {
+//     loadData();
+// }, [result])
+
+  // nao mexa
   function HandleChangesVariable(row: any, item: any, value: any,) {
     setResult((previousState) => {
       return {
@@ -43,7 +74,7 @@ export function GenerateProblem() {
       }
     })
   }
-
+  // nao mexa
   function HandleChangesConstraints(item: any, value: any) {
     setResult((previousState) => {
       return {
@@ -56,24 +87,40 @@ export function GenerateProblem() {
     })
   }
 
-  function handleSubmit() {
-    const link = document.createElement('a')
+  // funcao do json server 
+  // function handleCreateNewData(event: FormEvent){
+  //   event.preventDefault();
+  //   postData();
+  //   object.setData(result)
+  // }
 
+  // nao mexa
+  function handleSubmit(event: any) {
+    const dirName = './../../';
+
+
+    const link = document.createElement('a')
     link.download = `data.json`
 
-    const blob = new Blob([JSON.stringify(result)], {
+    const blob =  new Blob([JSON.stringify(result)], {
       type: "application/json",
     })
-
     link.href = window.URL.createObjectURL(blob)
     link.click()
+
   }
 
-
+  // funcao do json server
+  // function handleNewDataChange(event: ChangeEvent<HTMLInputElement>){
+  //   console.log('entrou');
+  //   event.target.setCustomValidity("")
+  //   setResult({ ...result, [event.target.name]: event.target.value})
+  // }
   console.log(result)
+
   return (
     <div>
-      <form >
+      <form>
         <Card2 >
 
           <div style={{ display: 'flex', marginBottom: '1.5rem', justifyContent: 'center', alignItems: "center" }}>

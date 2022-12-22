@@ -26,20 +26,20 @@ export function FormCreateProblem() {
   const object = useContextProblem()
   const history = useNavigate()
 
-  async function postData() {
-    fetch('http://localhost:3000/dataProblem', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: `{
-              "numberVariable": ${dataProblem.numberVariable},
-              "numberConstraints": ${dataProblem.numberConstraints},
-              "method": ${dataProblem.method},
-              "option": ${dataProblem.option}
-            }`
-    }).then(data => data.json())
-  }
+  // async function postData() {
+  //   fetch('http://localhost:3000/dataProblem', {
+  //     method: 'POST',
+  //     headers: {
+  //       'Content-Type': 'application/json'
+  //     },
+  //     body: `{
+  //             "numberVariable": ${dataProblem.numberVariable},
+  //             "numberConstraints": ${dataProblem.numberConstraints},
+  //             "method": ${dataProblem.method},
+  //             "option": ${dataProblem.option}
+  //           }`
+  //   }).then(data => data.json())
+  // }
 
   function handleCreateNewData(event: FormEvent) {
     event.preventDefault();
@@ -47,12 +47,12 @@ export function FormCreateProblem() {
     history('/GenerateProblem')
   }
 
-  async function loadData() {
-    const response = await fetch('http://localhost:3000/dataProblem');
-    const data = await response.json();
+  // async function loadData() {
+  //   const response = await fetch('http://localhost:3000/dataProblem');
+  //   const data = await response.json();
 
-    SetNewDataProblem(data);
-  }
+  //   SetNewDataProblem(data);
+  // }
 
   const handleNewDataChange = (event: any) => {
     SetNewDataProblem({ ...dataProblem, [event.target.name]: event.target.value })
