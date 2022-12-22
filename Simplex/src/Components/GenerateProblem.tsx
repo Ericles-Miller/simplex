@@ -15,7 +15,6 @@ interface IDataProblem {
 
 export function GenerateProblem() {
   const object = useContextProblem()
-  console.log(object.data, 'aa')
   const navigate = useNavigate()
 
   // nao mexa
@@ -30,6 +29,15 @@ export function GenerateProblem() {
     option: object.data.option,
     type  : object.data.type
   })
+
+  async function loadData() {
+    const response = await fetch('http://localhost:3000/data');
+    const data = await response.json();
+    setResult(data);
+  }
+  useEffect (() => {
+    loadData();
+}, [result])
 
   async function postData() {
     fetch('http://localhost:3000/data', {
@@ -47,16 +55,26 @@ export function GenerateProblem() {
     }).then(data => data.json())
   }
 
-  async function loadData() {
-    const response = await fetch('http://localhost:3000/data');
-    const data = await response.json();
-
-    setResult(data);
+   // funcao do json server 
+   function handleCreateNewData(event: FormEvent){
+    event.preventDefault();
+    postData();
+    object.setData(result)
   }
 
-  useEffect (() => {
-    loadData();
-}, [result])
+  // funcao do json server
+  function handleNewDataChange(event: ChangeEvent<HTMLInputElement>){
+    console.log('entrou');
+    event.target.setCustomValidity("")
+    setResult({ ...result, [event.target.name]: event.target.value})
+  }
+
+
+  /**
+   * ==========================================================================================
+   * ===========================================================================================
+   */
+
 
   // nao mexa
   function HandleChangesVariable(row: any, item: any, value: any,) {
@@ -75,6 +93,7 @@ export function GenerateProblem() {
       }
     })
   }
+
   // nao mexa
   function HandleChangesConstraints(item: any, value: any) {
     setResult((previousState) => {
@@ -87,26 +106,7 @@ export function GenerateProblem() {
       }
     })
   }
-
-  // funcao do json server 
-  function handleCreateNewData(event: FormEvent){
-    event.preventDefault();
-    postData();
-    object.setData(result)
-  }
-
   // nao mexa
-
-  const delay = (time:any) => {  return new Promise(res => {
-    setTimeout(navigateGraph,time)
-  })
-}
-
-
-  const navigateGraph = () => {
-    navigate('/GraphFunction') 
-  }  
-
   async function handleSubmit(event: any) {
 
     const link = document.createElement('a')
@@ -126,19 +126,12 @@ export function GenerateProblem() {
       navigate('/PivotArray')
     }
   }
-
-  // funcao do json server
-  function handleNewDataChange(event: ChangeEvent<HTMLInputElement>){
-    console.log('entrou');
-    event.target.setCustomValidity("")
-    setResult({ ...result, [event.target.name]: event.target.value})
-  }
   console.log(result)
 
   return (
     <div>
         <Card2 >
-        <form>
+        <form onSubmit={handleCreateNewData}>
           <div style={{ display: 'flex', marginBottom: '1.5rem', justifyContent: 'center', alignItems: "center" }}>
             <strong style={{ paddingRight: "1rem" }}>Função</strong>
             {Array.from({
