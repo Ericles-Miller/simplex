@@ -140,31 +140,32 @@ export function FormCreateProblem() {
             </div>
           </div>
           <div className={styles.inputText}>
-            {dataProblem.type === "Graph" ? <TextField
-              name="numberVariable"
-              InputProps={{ inputProps: { min: 1 } }}
-              value={dataProblem?.numberVariable}
-              onChange={handleNewDataChange}
-              id="numberVariable"
-              label="Numero de Variaveis de Decisao"
-              type='number'
-              color="success"
-              focused
-              required
-              InputProps={{ inputProps: { min: 1, max:2 } }}
-              
-            /> :
-            <TextField
-              name="numberVariable"
-              value={dataProblem?.numberVariable}
-              onChange={handleNewDataChange}
-              id="numberVariable"
-              label="Numero de Variaveis de Decisao"
-              color="success"
-              focused
-              required
-              
-            />} 
+            { dataProblem.type === "Graph" ? <TextField
+               name="numberVariable"
+               value={dataProblem?.numberVariable}
+               onChange={handleNewDataChange}
+               id="numberVariable"
+               label="Numero de Variaveis de Decisao"
+               type='number'
+               color="success"
+               focused
+               required
+               InputProps={{ inputProps: { min: 1, max:2 } }}
+                
+              /> :
+              <TextField
+                name="numberVariable"
+                value={dataProblem?.numberVariable}
+                onChange={handleNewDataChange}
+                id="numberVariable"
+                label="Numero de Variaveis de Decisao"
+                type='number'
+                color="success"
+                focused
+                required
+                InputProps={{ inputProps: { min: 1 } }}
+              />
+            } 
             
             <TextField
               name="numberConstraints"
