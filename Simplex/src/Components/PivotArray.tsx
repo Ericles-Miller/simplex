@@ -1,15 +1,13 @@
-import React, { useState, useEffect } from "react"
-import { Card2 } from "./Card2";
 import { Table } from "./Table";
-
+import {Card3} from './Card3';
 
 export function PivotArray() {
 
   return (
     <div>
-      <Card2>
+      <Card3>
         <Table></Table>
-      </Card2>
+      </Card3>
     </div>
   )
 }

@@ -1,13 +1,16 @@
-import { Card2 } from "./Card2";
+import { Card3 } from "./Card3";
 import styles from './GraphFunction.module.css';
-import Graph from './../assets/graph.jpg';
+import Graph from './../assets/graph.png';
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 
 
 export function GraphFunction() {
   
   const [receivedData, newReceivedData] = useState([] as any)
+
+
 
   const getData = async () => {
     const response = await fetch('./../../functionGraph.json');
@@ -24,7 +27,7 @@ export function GraphFunction() {
   
   return (
     <div>
-      <Card2>
+      <Card3>
         <div>
           <div className={styles.divText}>
             <strong style={{ color: '#1C724B' }}>Ponto Ótimo:</strong>
@@ -37,7 +40,7 @@ export function GraphFunction() {
 
           <img src={Graph} className={styles.img} />
         </div>
-      </Card2>
+      </Card3>
     </div>
   );
 }
