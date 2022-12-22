@@ -1,8 +1,10 @@
 import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import { Card2 } from "./Card2";
 import { useContextProblem } from "../context/ProblemContentex";
-import { Box, Button, CircularProgress, TextField } from "@mui/material";
+import { Box, Button, CircularProgress, NativeSelect, TextField } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import { Select } from '@mui/material';
+
 
 interface IDataProblem {
   numberVariable: number,
@@ -16,8 +18,6 @@ export function GenerateProblem() {
   const object = useContextProblem()
   console.log(object.data, 'aa')
   const navigate = useNavigate()
-
-
 
   // nao mexa
   const [result, setResult] = useState({
@@ -189,10 +189,12 @@ export function GenerateProblem() {
                     style={{ marginLeft: '0.5rem', marginRight: '0.5rem' }}
                     required
                   > 
-                    <option value='<=' selected="selected">{'<='}</option>
-                    <option value='='>{'='}</option>
+                  <option value="" selected disabled hidden></option>
+                    <option value='<='>{'<='}</option>
+                    <option value='='> { '='}</option>
                     <option value='>='>{'>='}</option>
                   </select>
+
                   <TextField
                     name="InputRestrictions"
                     id="InputRestrictions"
