@@ -17,7 +17,9 @@ export  function CardProblem() {
             Gerar Problema
           </Typography>
           <Typography variant="body2">   
-            Coloque o numero de variaveis de decisao e o numero de restricoes. Alem disso selecione 
+            Coloque o número de variáveis de decisão e o número de restrições. Além disso selecione o método a função objetivo
+            e o modo da tabela.
+            <br /> Obs: Ao selecionar o modo Graph lembre que o maior valor para as variáveis de decisão é 2!
           </Typography>
         </CardContent>
       </CardActionArea>
