@@ -10,8 +10,6 @@ import FormLabel from '@mui/material/FormLabel';
 
 import { useContextProblem } from "../context/ProblemContentex";
 import { green } from "@mui/material/colors";
-// import {useHistory} from 'react-router-dom';
-
 
 
 interface IDataProblem {

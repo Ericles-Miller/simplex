@@ -127,13 +127,12 @@ export function GenerateProblem() {
                     </div>
                   })}
                   <select 
-                    required
                     onChange={(event) => HandleChangesVariable(row, 'simbol', event.target.value)}
                     style={{ marginLeft: '0.5rem', marginRight: '0.5rem' }}
                   >
                     <option value='<='>{'<='}</option>
                     <option value='='>{'='}</option>
-                    <option value='=>'>{'=>'}</option>
+                    <option value='>='>{'>='}</option>
                   </select>
                   <TextField
                     name="InputRestrictions"
