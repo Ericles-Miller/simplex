@@ -97,7 +97,6 @@ export function FormCreateProblem() {
                 color="success"
                 value={dataProblem?.option}
                 onChange={handleNewDataChange}
-
               >
                 <FormControlLabel value="Primal" control={<Radio sx={{
                   color: 'green',
@@ -151,7 +150,6 @@ export function FormCreateProblem() {
               focused
               required
               InputProps={{ inputProps: { min: 1, max:2 } }}
-              
             /> :
             <TextField
               name="numberVariable"
@@ -164,8 +162,8 @@ export function FormCreateProblem() {
               color="success"
               focused
               required
-              
-            />} 
+            />
+            } 
             
             <TextField
               name="numberConstraints"
