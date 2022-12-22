@@ -10,8 +10,6 @@ import FormLabel from '@mui/material/FormLabel';
 
 import { useContextProblem } from "../context/ProblemContentex";
 import { green } from "@mui/material/colors";
-// import {useHistory} from 'react-router-dom';
-
 
 
 interface IDataProblem {
@@ -26,39 +24,35 @@ export function FormCreateProblem() {
   const [dataProblem, SetNewDataProblem] = useState<IDataProblem>({} as any)
 
   const object = useContextProblem()
-  const history = useNavigate()
+  const navigate = useNavigate()
 
-  const postData = () => {
-    fetch('http://localhost:3003/dataProblem', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: `{
-        "numberVariable": ${ dataProblem.numberVariable },
-        "numberConstraints": ${ dataProblem.numberConstraints }
-        
-      }`
-    })
-      .then((resp) => resp.json())
-      .then((data) => {
-        SetNewDataProblem(data.numberConstraints);
-        console.log("ESSE É O DADO", dataProblem);
-      })
-
-  }
-
+  // async function postData() {
+  //   fetch('http://localhost:3000/dataProblem', {
+  //     method: 'POST',
+  //     headers: {
+  //       'Content-Type': 'application/json'
+  //     },
+  //     body: `{
+  //             "numberVariable": ${dataProblem.numberVariable},
+  //             "numberConstraints": ${dataProblem.numberConstraints},
+  //             "method": ${dataProblem.method},
+  //             "option": ${dataProblem.option}
+  //           }`
+  //   }).then(data => data.json())
+  // }
+  // nao meche
   function handleCreateNewData(event: FormEvent) {
     event.preventDefault();
     object.setData(dataProblem)
-    history('/GenerateProblem')
+    navigate('/GenerateProblem')
   }
 
-  async function loadData() {
-    const response = await fetch('http://localhost:3003/dataProblem');
-    const data = await response.json();
+  // async function loadData() {
+  //   const response = await fetch('http://localhost:3000/dataProblem');
+  //   const data = await response.json();
 
-  }
+  //   SetNewDataProblem(data);
+  // }
 
   const handleNewDataChange = (event: any) => {
     SetNewDataProblem({ ...dataProblem, [event.target.name]: event.target.value })
@@ -141,20 +135,37 @@ export function FormCreateProblem() {
                     color: 'green',
                   },
                 }} />} label="Graph" />
+
               </RadioGroup>
             </div>
           </div>
           <div className={styles.inputText}>
+            {dataProblem.type === "Graph" ? <TextField
+              name="numberVariable"
+              InputProps={{ inputProps: { min: 1 } }}
+              value={dataProblem?.numberVariable}
+              onChange={handleNewDataChange}
+              id="numberVariable"
+              label="Numero de Variaveis de Decisao"
+              type='number'
+              color="success"
+              focused
+              required
+              InputProps={{ inputProps: { min: 1, max:2 } }}
+              
+            /> :
             <TextField
               name="numberVariable"
-              value={dataProblem.numberVariable}
+              value={dataProblem?.numberVariable}
               onChange={handleNewDataChange}
               id="numberVariable"
               label="Numero de Variaveis de Decisao"
               color="success"
               focused
               required
-            />
+              
+            />} 
+            
             <TextField
               name="numberConstraints"
               value={dataProblem.numberConstraints}
@@ -164,6 +175,7 @@ export function FormCreateProblem() {
               type='number'
               color="success"
               focused
+              InputProps={{ inputProps: { min: 1 } }}
               required
             />
           </div>
