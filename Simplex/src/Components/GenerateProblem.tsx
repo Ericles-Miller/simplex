@@ -3,6 +3,8 @@ import { Card2 } from "./Card2";
 import { useContextProblem } from "../context/ProblemContentex";
 import {  Button, TextField } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import { TIMEOUT } from "dns";
+import DeleayComponent from "./Test";
 
 
 interface IDataProblem {
@@ -14,8 +16,10 @@ interface IDataProblem {
 }
 
 export function GenerateProblem() {
-  const object = useContextProblem()
+  const object = useContextProblem() // recebi as var do content
   const navigate = useNavigate()
+
+  
 
   // nao mexa
   const [result, setResult] = useState({
@@ -37,6 +41,7 @@ export function GenerateProblem() {
   }
   useEffect (() => {
     loadData();
+    
 }, [result])
 
   async function postData() {
@@ -59,7 +64,7 @@ export function GenerateProblem() {
    function handleCreateNewData(event: FormEvent){
     event.preventDefault();
     postData();
-    object.setData(result)
+    //object.setData(result)
   }
 
   // funcao do json server
@@ -74,7 +79,7 @@ export function GenerateProblem() {
    * ==========================================================================================
    * ===========================================================================================
    */
-
+  
 
   // nao mexa
   function HandleChangesVariable(row: any, item: any, value: any,) {
@@ -117,21 +122,22 @@ export function GenerateProblem() {
     })
 
     link.href = window.URL.createObjectURL(blob)
-    link.click()
+    //link.click()
 
     if(object.data.type === 'Graph') {
       navigate('/GraphFunction')
     }
     else{
+      <DeleayComponent />
       navigate('/PivotArray')
+      
     }
   }
-  console.log(result)
 
   return (
     <div>
         <Card2 >
-        <form onSubmit={handleCreateNewData}>
+        <form >
           <div style={{ display: 'flex', marginBottom: '1.5rem', justifyContent: 'center', alignItems: "center" }}>
             <strong style={{ paddingRight: "1rem" }}>Função</strong>
             {Array.from({
@@ -219,5 +225,3 @@ export function GenerateProblem() {
     </div>
   )
 }
-
-

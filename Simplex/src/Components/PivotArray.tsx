@@ -35,7 +35,6 @@ export function PivotArray() {
             <h2>Carregando Dados</h2>
           </Box>
         </Card3> 
-        
       </div>   
     );
   }
