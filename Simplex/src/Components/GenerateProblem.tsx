@@ -17,7 +17,6 @@ export function GenerateProblem() {
   const object = useContextProblem() 
   const navigate = useNavigate()
 
-  
   const [result, setResult] = useState({
     constraintsMethod: {
 

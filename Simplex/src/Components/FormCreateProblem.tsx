@@ -33,6 +33,7 @@ export function FormCreateProblem() {
   const handleNewDataChange = (event: any) => {
     if(event.target.value  && event.target.value <=0) return alert('O valor deve ser maior igual a 1') 
     SetNewDataProblem({ ...dataProblem, [event.target.name]: event.target.value })
+    SetNewDataProblem({ ...dataProblem, [event.target.name]: event.target.value })
   }
 
   return (
@@ -132,7 +133,7 @@ export function FormCreateProblem() {
             
             <TextField
               name="numberConstraints"
-              value={dataProblem?.numberConstraints}
+              value={dataProblem.numberConstraints}
               onChange={handleNewDataChange}
               id="numberConstraints"
               label="Número de Variáveis de Restrição"
