@@ -16,7 +16,7 @@ export function AuxPage() {
         
         const data = await response.json();
         console.log(data)
-        if (data?.teste) {
+        if (data?.test) {
             
         }
         else {

@@ -6,7 +6,6 @@ import { useEffect, useRef, useState } from "react";
 export function PivotArray() {
 
   const [receivedData, setReceivedData] = useState<object[]>()
-  const [nicePoint, setNicePoint] = useState<object[]>()
 
   const [load, setLoad] = useState(true);
   const intervalRef = useRef(null);
@@ -14,9 +13,9 @@ export function PivotArray() {
   const getData = async () => {
     const response = await fetch('./../../problem/data.json');
     const data = await response.json();
-
+    console.log(data);
+    
     if (data?.teste) {
-
     }
     else {
       setLoad(false)
@@ -24,12 +23,6 @@ export function PivotArray() {
     }
   }
 
-
-  const getDataNicePoint = async () => {
-    const response = await fetch('../../../problem/nicePoint.json');
-    const dataNicePoint = await response.json();
-    setNicePoint(dataNicePoint);
-  }
 
   useEffect(() => {
     intervalRef.current = setInterval(() => getData(), 3000)
