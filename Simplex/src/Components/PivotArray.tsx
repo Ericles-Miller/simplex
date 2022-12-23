@@ -10,13 +10,13 @@ export function PivotArray() {
   const [nicePoint, setNicePoint] = useState<object[]>()
 
   const getData = async () => {
-    const response = await fetch('./../../result.json');
+    const response = await fetch('./../../problem/data.json');
     const data = await response.json();
     setReceivedData(data);
   }
 
   const getDataNicePoint = async () => {
-    const response = await fetch('./../../nicePoint.json');
+    const response = await fetch('../../../problem/nicePoint.json');
     const dataNicePoint = await response.json();
     setNicePoint(dataNicePoint);
   }
@@ -28,18 +28,19 @@ export function PivotArray() {
 
   if (receivedData === undefined) {
     return (
-      <Card3>
-        <Box>
-          <CircularProgress />
-          <h2>Carregando Dados</h2>
-
-        </Box>
-      </Card3>
-    )
+      <div>
+        <Card3>
+          <Box>
+            <CircularProgress />
+            <h2>Carregando Dados</h2>
+          </Box>
+        </Card3> 
+      </div>   
+    );
   }
-  
+
   else {
-    return(
+    return (
       <Card3>
         <Table></Table>
       </Card3>
