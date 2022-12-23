@@ -1,27 +1,27 @@
-import { Table } from "./Table";
-import { Card3 } from './Card3';
-import { Box, CircularProgress } from "@mui/material";
 import { useEffect, useRef, useState } from "react";
+import { Card3 } from "./Card3";
+import { Box, CircularProgress } from "@mui/material";
+import { GraphFunction } from "./GraphFunction";
 
-export function PivotArray() {
 
-  const [receivedData, setReceivedData] = useState<object[]>()
-
+export function AuxPage() {
+  const [receivedData, newReceivedData] = useState<Object>()
   const [load, setLoad] = useState(true);
+
   const intervalRef = useRef(null);
 
   const getData = async () => {
-    const response = await fetch('./../../problem/data.json');
+    const response = await fetch('./../../problem/functionGraph.json');
+
     const data = await response.json();
-    
-    if (data?.teste) {
+    if (data?.test) {
+
     }
     else {
       setLoad(false)
-      setReceivedData(data);
+      newReceivedData(data);
     }
   }
-
 
   useEffect(() => {
     intervalRef.current = setInterval(() => getData(), 3000)
@@ -50,9 +50,8 @@ export function PivotArray() {
   else {
     return (
       <Card3>
-        <Table></Table>
+        <GraphFunction></GraphFunction>
       </Card3>
     )
   }
 }
-

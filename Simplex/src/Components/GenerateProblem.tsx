@@ -1,6 +1,6 @@
-import { ChangeEvent, FormEvent, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Card2 } from "./Card2";
-import { useContextProblem } from "../context/ProblemContentex";
+import { useContextProblem } from "../context/ProblemContext";
 import {  Button, TextField } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
@@ -14,11 +14,9 @@ interface IDataProblem {
 }
 
 export function GenerateProblem() {
-  const object = useContextProblem()
-  console.log(object.data, 'aa')
+  const object = useContextProblem() 
   const navigate = useNavigate()
 
-  // nao mexa
   const [result, setResult] = useState({
     constraintsMethod: {
 
@@ -31,34 +29,35 @@ export function GenerateProblem() {
     type  : object.data.type
   })
 
+  async function loadData() {
+    const response = await fetch('http://localhost:3000/data',{
+      method: 'get'
+    });
+    const data = await response.json();
+  }
+  
+  useEffect (() => {
+    loadData();
+    
+}, [])
+
   async function postData() {
     fetch('http://localhost:3000/data', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: `{
-              "numberVariablesMethod": ${result.numberVariablesMethod}
-              "constraintsMethod"    : ${result.constraintsMethod},
-              "method": ${object.data.method},
-              "option": ${object.data.option},
-              "type"  : ${object.data.type}
-            }`
+      body: JSON.stringify({
+        "id": Math.random(),
+        "numberVariablesMethod": result.numberVariablesMethod,
+        "constraintsMethod"    : result.constraintsMethod,
+        "method": object.data.method,
+        "option": object.data.option,
+        "type"  : object.data.type,
+      })
     }).then(data => data.json())
   }
 
-  async function loadData() {
-    const response = await fetch('http://localhost:3000/data');
-    const data = await response.json();
-
-    setResult(data);
-  }
-
-  useEffect (() => {
-    loadData();
-}, [result])
-
-  // nao mexa
   function HandleChangesVariable(row: any, item: any, value: any,) {
     setResult((previousState) => {
       return {
@@ -75,7 +74,7 @@ export function GenerateProblem() {
       }
     })
   }
-  // nao mexa
+
   function HandleChangesConstraints(item: any, value: any) {
     setResult((previousState) => {
       return {
@@ -87,58 +86,24 @@ export function GenerateProblem() {
       }
     })
   }
-
-  // funcao do json server 
-  function handleCreateNewData(event: FormEvent){
-    event.preventDefault();
-    postData();
-    object.setData(result)
-  }
-
-  // nao mexa
-
-  const delay = (time:any) => {  return new Promise(res => {
-    setTimeout(navigateGraph,time)
-  })
-}
-
-
-  const navigateGraph = () => {
-    navigate('/GraphFunction') 
-  }  
+  
 
   async function handleSubmit(event: any) {
-
-    const link = document.createElement('a')
-    link.download = `problem.json`
-
-    const blob =  new Blob([JSON.stringify(result)], {
-      type: "application/json",
-    })
-
-    link.href = window.URL.createObjectURL(blob)
-    link.click()
-
+    await postData()
+    
     if(object.data.type === 'Graph') {
-      navigate('/GraphFunction')
+      navigate('/AuxPage')
     }
     else{
       navigate('/PivotArray')
+      
     }
   }
-
-  // funcao do json server
-  function handleNewDataChange(event: ChangeEvent<HTMLInputElement>){
-    console.log('entrou');
-    event.target.setCustomValidity("")
-    setResult({ ...result, [event.target.name]: event.target.value})
-  }
-  console.log(result)
 
   return (
     <div>
         <Card2 >
-        <form>
+        <form onSubmit={handleSubmit}>
           <div style={{ display: 'flex', marginBottom: '1.5rem', justifyContent: 'center', alignItems: "center" }}>
             <strong style={{ paddingRight: "1rem" }}>Função</strong>
             {Array.from({
@@ -155,14 +120,13 @@ export function GenerateProblem() {
                   color="success"
                   focused
                   onChange={(event) => HandleChangesConstraints(`x${index + 1}`, event.target.value)}
-                  InputProps={{ inputProps: { min: 0 } }}
+                  InputProps={{ inputProps: { min: 1 } }}
                   required
                 />
                 {index != object.data.numberConstraints - 1 ? <strong style={{ marginLeft: '0.5rem' }}>+</strong> : null}
               </div>
             })}
           </div>
-
 
           <div>
             {Array.from({
@@ -183,7 +147,7 @@ export function GenerateProblem() {
                         color="success"
                         focused
                         onChange={(event) => HandleChangesVariable(row, `x${column + 1}`, event.target.value)}
-                        InputProps={{ inputProps: { min: 0 } }}
+                        InputProps={{ inputProps: { min: 1 } }}
                         required
                       />
                       {column != object.data.numberConstraints - 1 ? <strong style={{ marginLeft: '0.5rem', marginRight: '0.5rem' }}>+</strong> : null}
@@ -209,15 +173,13 @@ export function GenerateProblem() {
                     focused
                     onChange={(event) => HandleChangesVariable(row, 'result', event.target.value)}
                     required
-                    //InputProps={{ inputProps: { min: 0 } }}
                   />
                 </div>
               )
             })}
           </div>
           <div style={{ marginTop: '2rem' }}>
-            {/* {object.data.type == 'Graph' ? <Button ></Button>} */}
-            <Button onClick={handleSubmit} type="submit" variant="contained" color="success">
+            <Button  type="submit" variant="contained" color="success">
               Enviar Dados
             </Button>
           </div>
@@ -226,5 +188,3 @@ export function GenerateProblem() {
     </div>
   )
 }
-
-

@@ -1,15 +1,12 @@
 import { TextField, Button } from "@mui/material";
 import { FormEvent, useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import styles from './formCreateProblem.module.css';
-
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormLabel from '@mui/material/FormLabel';
-
-import { useContextProblem } from "../context/ProblemContentex";
-import { green } from "@mui/material/colors";
+import { useContextProblem } from "../context/ProblemContext";
 
 
 interface IDataProblem {
@@ -26,35 +23,15 @@ export function FormCreateProblem() {
   const object = useContextProblem()
   const navigate = useNavigate()
 
-  // async function postData() {
-  //   fetch('http://localhost:3000/dataProblem', {
-  //     method: 'POST',
-  //     headers: {
-  //       'Content-Type': 'application/json'
-  //     },
-  //     body: `{
-  //             "numberVariable": ${dataProblem.numberVariable},
-  //             "numberConstraints": ${dataProblem.numberConstraints},
-  //             "method": ${dataProblem.method},
-  //             "option": ${dataProblem.option}
-  //           }`
-  //   }).then(data => data.json())
-  // }
-  // nao meche
+  
   function handleCreateNewData(event: FormEvent) {
     event.preventDefault();
     object.setData(dataProblem)
     navigate('/GenerateProblem')
   }
 
-  // async function loadData() {
-  //   const response = await fetch('http://localhost:3000/dataProblem');
-  //   const data = await response.json();
-
-  //   SetNewDataProblem(data);
-  // }
-
   const handleNewDataChange = (event: any) => {
+    if(event.target.value  && event.target.value <=0) return alert('O valor deve ser maior igual a 1') 
     SetNewDataProblem({ ...dataProblem, [event.target.name]: event.target.value })
     SetNewDataProblem({ ...dataProblem, [event.target.name]: event.target.value })
   }
@@ -121,6 +98,7 @@ export function FormCreateProblem() {
                 color="success"
                 value={dataProblem?.type}
                 onChange={handleNewDataChange}
+                
               >
                 <FormControlLabel value="Tabular" control={<Radio sx={{
                   color: 'green',
@@ -139,7 +117,7 @@ export function FormCreateProblem() {
             </div>
           </div>
           <div className={styles.inputText}>
-            {dataProblem.type === "Graph" ? <TextField
+           <TextField
               name="numberVariable"
               value={dataProblem?.numberVariable}
               onChange={handleNewDataChange}
@@ -149,21 +127,9 @@ export function FormCreateProblem() {
               color="success"
               focused
               required
-              InputProps={{ inputProps: { min: 1, max:2 } }}
-            /> :
-            <TextField
-              name="numberVariable"
-              InputProps={{ inputProps: { min: 1 } }}
-              value={dataProblem?.numberVariable}
-              onChange={handleNewDataChange}
-              id="numberVariable"
-              label="Número de Variáveis de Decisão"
-              type='number'
-              color="success"
-              focused
-              required
-            />
-            } 
+              InputProps={dataProblem.type === 'Graph'?{ inputProps: {  max:2 } }: {inputProps: { min:1}}}
+            /> 
+            
             
             <TextField
               name="numberConstraints"
