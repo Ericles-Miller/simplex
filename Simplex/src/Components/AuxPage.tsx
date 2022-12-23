@@ -13,11 +13,10 @@ export function AuxPage() {
 
     const getData = async () => {
         const response = await fetch('./../../problem/functionGraph.json');
-        console.log(response)
         
         const data = await response.json();
         console.log(data)
-        if (data?.teste) {
+        if (data?.test) {
             
         }
         else {
