@@ -4,58 +4,54 @@ import { Box, CircularProgress } from "@mui/material";
 import { GraphFunction } from "./GraphFunction";
 
 
-
 export function AuxPage() {
-    const [receivedData, newReceivedData] = useState<Object>()
-    const [load, setLoad] = useState(true);
+  const [receivedData, newReceivedData] = useState<Object>()
+  const [load, setLoad] = useState(true);
 
-    const intervalRef = useRef(null);
+  const intervalRef = useRef(null);
 
-    const getData = async () => {
-        const response = await fetch('./../../problem/functionGraph.json');
-        console.log(response)
-        
-        const data = await response.json();
-        console.log(data)
-        if (data?.teste) {
-            
-        }
-        else {
-            setLoad(false)
-            newReceivedData(data);
-        }
+  const getData = async () => {
+    const response = await fetch('./../../problem/functionGraph.json');
+
+    const data = await response.json();
+    if (data?.test) {
+
     }
-
-    useEffect(() => {
-        intervalRef.current = setInterval(() => getData(), 3000)
-        
-        if(!load){
-            clearInterval(intervalRef.current)
-            intervalRef.current = null
-        }
-    }, [load]);
-
-    if (load) {
-
-        return (
-            <div>
-                <Card3>
-                    <Box>
-                        <CircularProgress />
-                        <h2>Carregando Dados</h2>
-                    </Box>
-                </Card3>
-
-            </div>
-        );
-    }
-
     else {
-        return (
-            <Card3>
-                <GraphFunction></GraphFunction>
-            </Card3>
-        )
+      setLoad(false)
+      newReceivedData(data);
     }
+  }
 
+  useEffect(() => {
+    intervalRef.current = setInterval(() => getData(), 3000)
+
+    if (!load) {
+      clearInterval(intervalRef.current)
+      intervalRef.current = null
+    }
+  }, [load]);
+
+  if (load) {
+
+    return (
+      <div>
+        <Card3>
+          <Box>
+            <CircularProgress />
+            <h2>Carregando Dados</h2>
+          </Box>
+        </Card3>
+
+      </div>
+    );
+  }
+
+  else {
+    return (
+      <Card3>
+        <GraphFunction></GraphFunction>
+      </Card3>
+    )
+  }
 }

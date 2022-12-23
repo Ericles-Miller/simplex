@@ -1,9 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import styles from './table.module.css'
-import { table } from 'console';
-import { useNavigate } from 'react-router-dom';
-import { Box, CircularProgress } from '@mui/material';
-import { render } from 'react-dom';
+
 
 export function Table() {
   const [receivedData, setReceivedData] = useState<object[]>()

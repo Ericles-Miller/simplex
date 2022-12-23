@@ -1,9 +1,8 @@
-import { ChangeEvent, FormEvent, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Card2 } from "./Card2";
-import { useContextProblem } from "../context/ProblemContentex";
+import { useContextProblem } from "../context/ProblemContext";
 import {  Button, TextField } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import { TIMEOUT } from "dns";
 
 
 interface IDataProblem {
@@ -15,10 +14,10 @@ interface IDataProblem {
 }
 
 export function GenerateProblem() {
-  const object = useContextProblem() // recebi as var do content
+  const object = useContextProblem() 
   const navigate = useNavigate()
 
-  // nao mexa
+  
   const [result, setResult] = useState({
     constraintsMethod: {
 
@@ -32,12 +31,10 @@ export function GenerateProblem() {
   })
 
   async function loadData() {
-    console.log('load')
     const response = await fetch('http://localhost:3000/data',{
       method: 'get'
     });
     const data = await response.json();
-    console.log(data)
   }
   
   useEffect (() => {
@@ -46,7 +43,6 @@ export function GenerateProblem() {
 }, [])
 
   async function postData() {
-    console.log('post')
     fetch('http://localhost:3000/data', {
       method: 'POST',
       headers: {
@@ -63,8 +59,6 @@ export function GenerateProblem() {
     }).then(data => data.json())
   }
 
-
-  // nao mexa
   function HandleChangesVariable(row: any, item: any, value: any,) {
     setResult((previousState) => {
       return {
@@ -82,7 +76,6 @@ export function GenerateProblem() {
     })
   }
 
-  // nao mexa
   function HandleChangesConstraints(item: any, value: any) {
     setResult((previousState) => {
       return {
@@ -94,7 +87,8 @@ export function GenerateProblem() {
       }
     })
   }
-  // nao mexa
+  
+
   async function handleSubmit(event: any) {
     await postData()
     
@@ -127,14 +121,13 @@ export function GenerateProblem() {
                   color="success"
                   focused
                   onChange={(event) => HandleChangesConstraints(`x${index + 1}`, event.target.value)}
-                  InputProps={{ inputProps: { min: 0 } }}
+                  InputProps={{ inputProps: { min: 1 } }}
                   required
                 />
                 {index != object.data.numberConstraints - 1 ? <strong style={{ marginLeft: '0.5rem' }}>+</strong> : null}
               </div>
             })}
           </div>
-
 
           <div>
             {Array.from({
@@ -155,7 +148,7 @@ export function GenerateProblem() {
                         color="success"
                         focused
                         onChange={(event) => HandleChangesVariable(row, `x${column + 1}`, event.target.value)}
-                        InputProps={{ inputProps: { min: 0 } }}
+                        InputProps={{ inputProps: { min: 1 } }}
                         required
                       />
                       {column != object.data.numberConstraints - 1 ? <strong style={{ marginLeft: '0.5rem', marginRight: '0.5rem' }}>+</strong> : null}
