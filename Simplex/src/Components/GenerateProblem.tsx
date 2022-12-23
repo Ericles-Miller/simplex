@@ -4,7 +4,6 @@ import { useContextProblem } from "../context/ProblemContentex";
 import {  Button, TextField } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { TIMEOUT } from "dns";
-import DeleayComponent from "./Test";
 
 
 interface IDataProblem {
@@ -40,6 +39,7 @@ export function GenerateProblem() {
     const data = await response.json();
     console.log(data)
   }
+  
   useEffect (() => {
     loadData();
     
@@ -63,27 +63,6 @@ export function GenerateProblem() {
     }).then(data => data.json())
   }
 
-   // funcao do json server 
-   function handleCreateNewData(event: FormEvent){
-    console.log('handle')
-    event.preventDefault();
-    postData();
-    //object.setData(result)
-  }
-
-  // funcao do json server
-  function handleNewDataChange(event: ChangeEvent<HTMLInputElement>){
-    console.log('entrou');
-    event.target.setCustomValidity("")
-    setResult({ ...result, [event.target.name]: event.target.value})
-  }
-
-
-  /**
-   * ==========================================================================================
-   * ===========================================================================================
-   */
-  
 
   // nao mexa
   function HandleChangesVariable(row: any, item: any, value: any,) {
@@ -202,14 +181,12 @@ export function GenerateProblem() {
                     focused
                     onChange={(event) => HandleChangesVariable(row, 'result', event.target.value)}
                     required
-                    //InputProps={{ inputProps: { min: 0 } }}
                   />
                 </div>
               )
             })}
           </div>
           <div style={{ marginTop: '2rem' }}>
-            {/* {object.data.type == 'Graph' ? <Button ></Button>} */}
             <Button  type="submit" variant="contained" color="success">
               Enviar Dados
             </Button>

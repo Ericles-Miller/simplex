@@ -27,7 +27,7 @@ export function AuxPage() {
     }
 
     useEffect(() => {
-        intervalRef.current = setInterval(() => getData(), 1000)
+        intervalRef.current = setInterval(() => getData(), 3000)
         
         if(!load){
             clearInterval(intervalRef.current)
