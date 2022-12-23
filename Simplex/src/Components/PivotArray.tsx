@@ -1,19 +1,29 @@
 import { Table } from "./Table";
 import { Card3 } from './Card3';
 import { Box, CircularProgress } from "@mui/material";
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useEffect, useRef, useState } from "react";
 
 export function PivotArray() {
 
   const [receivedData, setReceivedData] = useState<object[]>()
   const [nicePoint, setNicePoint] = useState<object[]>()
 
+  const [load, setLoad] = useState(true);
+  const intervalRef = useRef(null);
+
   const getData = async () => {
     const response = await fetch('./../../problem/data.json');
     const data = await response.json();
-    setReceivedData(data);
+
+    if (data?.teste) {
+
+    }
+    else {
+      setLoad(false)
+      setReceivedData(data);
+    }
   }
+
 
   const getDataNicePoint = async () => {
     const response = await fetch('../../../problem/nicePoint.json');
@@ -22,11 +32,16 @@ export function PivotArray() {
   }
 
   useEffect(() => {
-    getData();
-    getDataNicePoint();
-  }, []);
+    intervalRef.current = setInterval(() => getData(), 3000)
 
-  if (receivedData === undefined) {
+    if (!load) {
+      clearInterval(intervalRef.current)
+      intervalRef.current = null
+    }
+  }, [load]);
+
+  if (load) {
+
     return (
       <div>
         <Card3>
@@ -34,8 +49,9 @@ export function PivotArray() {
             <CircularProgress />
             <h2>Carregando Dados</h2>
           </Box>
-        </Card3> 
-      </div>   
+        </Card3>
+
+      </div>
     );
   }
 
@@ -46,6 +62,5 @@ export function PivotArray() {
       </Card3>
     )
   }
-
 }
 
