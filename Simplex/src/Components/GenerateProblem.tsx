@@ -119,14 +119,6 @@ export function GenerateProblem() {
   async function handleSubmit(event: any) {
     await postData()
     
-
-    
-    
-
-    
-
-    
-
     if(object.data.type === 'Graph') {
       navigate('/AuxPage')
     }
@@ -139,7 +131,7 @@ export function GenerateProblem() {
   return (
     <div>
         <Card2 >
-        <form onSubmit={handleCreateNewData}>
+        <form onSubmit={handleSubmit}>
           <div style={{ display: 'flex', marginBottom: '1.5rem', justifyContent: 'center', alignItems: "center" }}>
             <strong style={{ paddingRight: "1rem" }}>Função</strong>
             {Array.from({
@@ -218,7 +210,7 @@ export function GenerateProblem() {
           </div>
           <div style={{ marginTop: '2rem' }}>
             {/* {object.data.type == 'Graph' ? <Button ></Button>} */}
-            <Button onClick={handleSubmit} type="submit" variant="contained" color="success">
+            <Button  type="submit" variant="contained" color="success">
               Enviar Dados
             </Button>
           </div>

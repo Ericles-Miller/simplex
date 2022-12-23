@@ -21,6 +21,96 @@
       "method": "Minimizar",
       "option": "Dual",
       "type": "Tabular"
+    },
+    {
+      "id": 0.536569680339896,
+      "numberVariablesMethod": [
+        {
+          "x1": "4",
+          "x2": "5",
+          "simbol": "<=",
+          "result": "8"
+        },
+        {
+          "x1": "7",
+          "x2": "5",
+          "simbol": "=",
+          "result": "9"
+        }
+      ],
+      "constraintsMethod": {
+        "x1": "2",
+        "x2": "3"
+      },
+      "method": "Minimizar",
+      "option": "Primal",
+      "type": "Graph"
+    },
+    {
+      "id": 0.9105647489146436,
+      "numberVariablesMethod": [
+        {
+          "x1": "5",
+          "x2": "3",
+          "simbol": "=",
+          "result": "6"
+        },
+        {
+          "x1": "9",
+          "x2": "5",
+          "simbol": "=",
+          "result": "4"
+        }
+      ],
+      "constraintsMethod": {
+        "x1": "2",
+        "x2": "4"
+      },
+      "method": "Minimizar",
+      "option": "Primal",
+      "type": "Graph"
+    },
+    {
+      "id": 0.14113583306666055,
+      "numberVariablesMethod": [
+        {
+          "x1": "1",
+          "simbol": "<=",
+          "result": "2"
+        },
+        {
+          "x1": "4",
+          "simbol": "=",
+          "result": "5"
+        }
+      ],
+      "constraintsMethod": {
+        "x1": "1"
+      },
+      "method": "Minimizar",
+      "option": "Primal",
+      "type": "Graph"
+    },
+    {
+      "id": 0.5970074705184043,
+      "numberVariablesMethod": [
+        {
+          "x1": "2",
+          "simbol": "<=",
+          "result": "4"
+        },
+        {
+          "x1": "3",
+          "simbol": "<=",
+          "result": "0"
+        }
+      ],
+      "constraintsMethod": {
+        "x1": "1"
+      },
+      "method": "Minimizar",
+      "option": "Primal",
+      "type": "Tabular"
     }
   ]
 }

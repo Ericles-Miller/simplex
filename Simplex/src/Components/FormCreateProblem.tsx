@@ -55,6 +55,7 @@ export function FormCreateProblem() {
   // }
 
   const handleNewDataChange = (event: any) => {
+    if(event.target.value  && event.target.value <=0) return alert('teste') 
     SetNewDataProblem({ ...dataProblem, [event.target.name]: event.target.value })
   }
 
@@ -138,7 +139,7 @@ export function FormCreateProblem() {
             </div>
           </div>
           <div className={styles.inputText}>
-            {dataProblem.type === "Graph" ? <TextField
+           <TextField
               name="numberVariable"
               value={dataProblem?.numberVariable}
               onChange={handleNewDataChange}
@@ -148,21 +149,9 @@ export function FormCreateProblem() {
               color="success"
               focused
               required
-              InputProps={{ inputProps: { min: 1, max:2 } }}
-            /> :
-            <TextField
-              name="numberVariable"
-              InputProps={{ inputProps: { min: 1 } }}
-              value={dataProblem?.numberVariable}
-              onChange={handleNewDataChange}
-              id="numberVariable"
-              label="Número de Variáveis de Decisão"
-              type='number'
-              color="success"
-              focused
-              required
-            />
-            } 
+              InputProps={dataProblem.type === 'Graph'?{ inputProps: {  max:2 } }: {inputProps: { max:2}}}
+            /> 
+            
             
             <TextField
               name="numberConstraints"

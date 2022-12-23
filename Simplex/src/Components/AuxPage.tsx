@@ -1,43 +1,61 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Card3 } from "./Card3";
 import { Box, CircularProgress } from "@mui/material";
 import { GraphFunction } from "./GraphFunction";
 
 
 
-export function AuxPage(){
+export function AuxPage() {
     const [receivedData, newReceivedData] = useState<Object>()
+    const [load, setLoad] = useState(true);
 
-  const getData = async () => {
-    const response = await fetch('./../../problem/functionGraph.json');
-    const data = await response.json();
-    newReceivedData(data);
-  }
+    const intervalRef = useRef(null);
 
-  useEffect(() => {
-    getData();
-  }, []);
-  
-  if (receivedData === undefined) {
-    console.log()
-    return (
-      <div>
-        <Card3>
-          <Box>
-            <CircularProgress />
-            <h2>Carregando Dados</h2>
-          </Box>
-        </Card3> 
-      </div>   
-    );
-  }
+    const getData = async () => {
+        const response = await fetch('./../../problem/functionGraph.json');
+        console.log(response)
+        
+        const data = await response.json();
+        console.log(data)
+        if (data?.teste) {
+            
+        }
+        else {
+            setLoad(false)
+            newReceivedData(data);
+        }
+    }
 
-  else {
-    return (
-        <Card3>
-          <GraphFunction></GraphFunction>
-        </Card3>
-      )
-  }
+    useEffect(() => {
+        intervalRef.current = setInterval(() => getData(), 1000)
+        
+        if(!load){
+            clearInterval(intervalRef.current)
+            intervalRef.current = null
+        }
+    }, [load]);
+
+    if (load) {
+
+        return (
+            <div>
+                <Card3>
+                    <Box>
+                        <CircularProgress />
+                        <h2>Carregando Dados</h2>
+                    </Box>
+                </Card3>
+
+            </div>
+        );
+    }
+
+    else {
+        return (
+            <Card3>
+                <GraphFunction></GraphFunction>
+            </Card3>
+        )
+    }
 
 }
