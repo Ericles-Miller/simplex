@@ -13,7 +13,6 @@ export function PivotArray() {
   const getData = async () => {
     const response = await fetch('./../../problem/data.json');
     const data = await response.json();
-    console.log(data);
     
     if (data?.teste) {
     }

@@ -23,7 +23,6 @@ export function Table() {
     getDataNicePoint();
   }, []);
 
-  console.log(receivedData)
 
   return (
 

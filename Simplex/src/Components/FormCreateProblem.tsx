@@ -2,13 +2,11 @@ import { TextField, Button } from "@mui/material";
 import { FormEvent, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from './formCreateProblem.module.css';
-
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormLabel from '@mui/material/FormLabel';
-
-import { useContextProblem } from "../context/ProblemContentex";
+import { useContextProblem } from "../context/ProblemContext";
 
 
 interface IDataProblem {
@@ -26,14 +24,12 @@ export function FormCreateProblem() {
   const navigate = useNavigate()
 
   
-  // nao meche
   function handleCreateNewData(event: FormEvent) {
     event.preventDefault();
     object.setData(dataProblem)
     navigate('/GenerateProblem')
   }
 
- 
   const handleNewDataChange = (event: any) => {
     if(event.target.value  && event.target.value <=0) return alert('O valor deve ser maior igual a 1') 
     SetNewDataProblem({ ...dataProblem, [event.target.name]: event.target.value })
@@ -101,6 +97,7 @@ export function FormCreateProblem() {
                 color="success"
                 value={dataProblem?.type}
                 onChange={handleNewDataChange}
+                
               >
                 <FormControlLabel value="Tabular" control={<Radio sx={{
                   color: 'green',
