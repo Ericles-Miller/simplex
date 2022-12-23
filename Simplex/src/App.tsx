@@ -4,7 +4,7 @@ import { CardProblem } from './Components/Card';
 import { GenerateProblem } from './Components/GenerateProblem';
 import './global.css';
 import { PivotArray } from './Components/PivotArray';
-import {ContextProblem} from './context/ProblemContentex';
+import {ContextProblem} from './context/ProblemContext';
 import { AuxPage } from './Components/AuxPage';
 
 function App() {
